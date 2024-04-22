@@ -6,7 +6,7 @@ output: html_notebook
 
 
 ```{r}
-plot(cars)
+plot(cars) this is a test
 ```
 
 
