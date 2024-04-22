@@ -3,10 +3,10 @@ title: "Data Science for Business With R - CH02"
 output: html_notebook
 ---
 
-
+## this is a test
 
 ```{r}
-plot(cars) this is a test
+plot(cars)
 ```
 
 
