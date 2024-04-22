@@ -1,0 +1,13 @@
+---
+title: "Data Science for Business With R - CH02"
+output: html_notebook
+---
+
+
+
+```{r}
+plot(cars)
+```
+
+
+
