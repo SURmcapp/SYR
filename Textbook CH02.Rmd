@@ -3,11 +3,52 @@ title: "Data Science for Business With R - CH02"
 output: html_notebook
 ---
 
-## this is a test
+## CREATING DATA FRAMES 
+
+First create vectors for the data frame
 
 ```{r}
-plot(cars)
+myFamilyNames <- c('Dad', 'Mom','Sis','Bro','Dog')
+myFamilyAges <- c(43,42,12,8,5)
+myFamilyGenders <- c('Male','Female','Female','Male','Female')
+myFamilyWeights <- c(188,136,83,61,44)
 ```
 
+Create the data frame from the above vectors
+
+```{r}
+myFamily <- data.frame(myFamilyNames,myFamilyAges,myFamilyGenders,myFamilyWeights)
+myFamily
+```
+## EXPLORING DATA FRAMES
+
+```{r}
+str(myFamily)
+```
+
+```{r}
+summary(myFamily)
+```
+
+```{r}
+head(myFamily, 3)
+
+tail(myFamily, 3)
+```
+
+## ACCESSING COLUMNS IN A DATA FRAME
+
+Using an existing vector ... Adding a value
+
+```{r}
+myFamily$myFamilyAges
+
+myFamilyAges <- c(myFamilyAges, 11)
+myFamilyAges
+
+myFamily$myFamilyAges #--- this causes an error
+
+myFamily$myFamilyAges <- c(myFamily$myFamilyAges, 11)
+```
 
 

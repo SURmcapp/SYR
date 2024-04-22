@@ -1753,21 +1753,131 @@ CH02</h1>
 
 
 <!-- rnb-text-begin -->
-<div id="this-is-a-test" class="section level2">
-<h2>this is a test</h2>
+<div id="creating-data-frames" class="section level2">
+<h2>CREATING DATA FRAMES</h2>
+<p>First create vectors for the data frame</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxucGxvdChjYXJzKVxuYGBgXG5gYGAifQ== -->
-<pre class="r"><code>```r
-plot(cars)</code></pre>
-<p>```</p>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXlGYW1pbHlOYW1lcyA8LSBjKCdEYWQnLCAnTW9tJywnU2lzJywnQnJvJywnRG9nJylcbm15RmFtaWx5QWdlcyA8LSBjKDQzLDQyLDEyLDgsNSlcbm15RmFtaWx5R2VuZGVycyA8LSBjKCdNYWxlJywnRmVtYWxlJywnRmVtYWxlJywnTWFsZScsJ0ZlbWFsZScpXG5teUZhbWlseVdlaWdodHMgPC0gYygxODgsMTM2LDgzLDYxLDQ0KVxuYGBgIn0= -->
+<pre class="r"><code>myFamilyNames &lt;- c(&#39;Dad&#39;, &#39;Mom&#39;,&#39;Sis&#39;,&#39;Bro&#39;,&#39;Dog&#39;)
+myFamilyAges &lt;- c(43,42,12,8,5)
+myFamilyGenders &lt;- c(&#39;Male&#39;,&#39;Female&#39;,&#39;Female&#39;,&#39;Male&#39;,&#39;Female&#39;)
+myFamilyWeights &lt;- c(188,136,83,61,44)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Create the data frame from the above vectors</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXlGYW1pbHkgPC0gZGF0YS5mcmFtZShteUZhbWlseU5hbWVzLG15RmFtaWx5QWdlcyxteUZhbWlseUdlbmRlcnMsbXlGYW1pbHlXZWlnaHRzKVxubXlGYW1pbHlcbmBgYCJ9 -->
+<pre class="r"><code>myFamily &lt;- data.frame(myFamilyNames,myFamilyAges,myFamilyGenders,myFamilyWeights)
+myFamily</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NSwibmNvbCI6NCwic3VtbWFyeSI6W119LCJyZGYiOiJINHNJQUFBQUFBQUFBM1ZSc1U3RE1CQzlKazVRSTFJcXdRY3dzalFEU0lpeG9EWk03UUJGZERXSlNTTVNPMHBTb0J1ZnhwY1Z6b212S2dFc1dmZjhmTS92ZkhjM1dWNTRTdzhBYkdDMkRiYURFSnlIUlRpNkFtQVdIbnJBb0svak95WWRJMkM0aHpyTFhOZ1RIaE9jcVp6Z2ZWb1J2Q25WTGxjbEdBWmFQcDUrYURNWVQ2R05aeWFlbW5nQ3RQYnQySXhud21BM0ZQbC9wNy95eURreHp0dzRMVDdiT0RkOFNNWS9PdUJJbm92S2xNTU02ZWVia09kcHRwazNseTE1U09SMXN1T09pTHNWTWhibEwvcFJwTW1xcmpxZS9WSzlCZVRyNDdiYUVyRWRuZUtpakZkVUhKRmV6R3NlUEplb3g5TzJJemxRUlowcWlTSkx6OVh0aUh0bGh4aXVwYTRrSGtXcnRYd1puVjkyN3UxQzZ1RjZEZFV1MzJCbkQ3TzJET3ZMeUYwYWtwQkpLbWxrVHNhZlJFWXZ4K0xWd0FFMnBPbEhVSlNwck9tanlGWkJyV3BPRWk5U0dUSE4xMkg3RFhrQnoyVHRBZ0FBIn0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["myFamilyNames"],"name":[1],"type":["chr"],"align":["left"]},{"label":["myFamilyAges"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["myFamilyGenders"],"name":[3],"type":["chr"],"align":["left"]},{"label":["myFamilyWeights"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Dad","2":"43","3":"Male","4":"188"},{"1":"Mom","2":"42","3":"Female","4":"136"},{"1":"Sis","2":"12","3":"Female","4":"83"},{"1":"Bro","2":"8","3":"Male","4":"61"},{"1":"Dog","2":"5","3":"Female","4":"44"}],"options":{"columns":{"min":{},"max":[10],"total":[4]},"rows":{"min":[10],"max":[10],"total":[5]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="exploring-data-frames" class="section level2">
+<h2>EXPLORING DATA FRAMES</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKG15RmFtaWx5KVxuYGBgIn0= -->
+<pre class="r"><code>str(myFamily)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJ2RhdGEuZnJhbWUnOlx0NSBvYnMuIG9mICA0IHZhcmlhYmxlczpcbiAkIG15RmFtaWx5TmFtZXMgIDogY2hyICBcIkRhZFwiIFwiTW9tXCIgXCJTaXNcIiBcIkJyb1wiIC4uLlxuICQgbXlGYW1pbHlBZ2VzICAgOiBudW0gIDQzIDQyIDEyIDggNVxuICQgbXlGYW1pbHlHZW5kZXJzOiBjaHIgIFwiTWFsZVwiIFwiRmVtYWxlXCIgXCJGZW1hbGVcIiBcIk1hbGVcIiAuLi5cbiAkIG15RmFtaWx5V2VpZ2h0czogbnVtICAxODggMTM2IDgzIDYxIDQ0XG4ifQ== -->
+<pre><code>&#39;data.frame&#39;:   5 obs. of  4 variables:
+ $ myFamilyNames  : chr  &quot;Dad&quot; &quot;Mom&quot; &quot;Sis&quot; &quot;Bro&quot; ...
+ $ myFamilyAges   : num  43 42 12 8 5
+ $ myFamilyGenders: chr  &quot;Male&quot; &quot;Female&quot; &quot;Female&quot; &quot;Male&quot; ...
+ $ myFamilyWeights: num  188 136 83 61 44</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShteUZhbWlseSlcbmBgYCJ9 -->
+<pre class="r"><code>summary(myFamily)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIG15RmFtaWx5TmFtZXMgICAgICAgbXlGYW1pbHlBZ2VzIG15RmFtaWx5R2VuZGVycyAgICBteUZhbWlseVdlaWdodHNcbiBMZW5ndGg6NSAgICAgICAgICAgTWluLiAgIDogNSAgICBMZW5ndGg6NSAgICAgICAgICAgTWluLiAgIDogNDQuMCAgXG4gQ2xhc3MgOmNoYXJhY3RlciAgIDFzdCBRdS46IDggICAgQ2xhc3MgOmNoYXJhY3RlciAgIDFzdCBRdS46IDYxLjAgIFxuIE1vZGUgIDpjaGFyYWN0ZXIgICBNZWRpYW4gOjEyICAgIE1vZGUgIDpjaGFyYWN0ZXIgICBNZWRpYW4gOiA4My4wICBcbiAgICAgICAgICAgICAgICAgICAgTWVhbiAgIDoyMiAgICAgICAgICAgICAgICAgICAgICAgTWVhbiAgIDoxMDIuNCAgXG4gICAgICAgICAgICAgICAgICAgIDNyZCBRdS46NDIgICAgICAgICAgICAgICAgICAgICAgIDNyZCBRdS46MTM2LjAgIFxuICAgICAgICAgICAgICAgICAgICBNYXguICAgOjQzICAgICAgICAgICAgICAgICAgICAgICBNYXguICAgOjE4OC4wICBcbiJ9 -->
+<pre><code> myFamilyNames       myFamilyAges myFamilyGenders    myFamilyWeights
+ Length:5           Min.   : 5    Length:5           Min.   : 44.0  
+ Class :character   1st Qu.: 8    Class :character   1st Qu.: 61.0  
+ Mode  :character   Median :12    Mode  :character   Median : 83.0  
+                    Mean   :22                       Mean   :102.4  
+                    3rd Qu.:42                       3rd Qu.:136.0  
+                    Max.   :43                       Max.   :188.0  </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaGVhZChteUZhbWlseSwgMylcbmBgYCJ9 -->
+<pre class="r"><code>head(myFamily, 3)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MywibmNvbCI6NCwic3VtbWFyeSI6W119LCJyZGYiOiJINHNJQUFBQUFBQUFBMlZSd1U2RFFCQ2RzZ3VtUkdvVGY4SUxIUFNpdDVxMGVLb0hyYkhYRlZaS2hGMENXN1UzUDgwdnF3NndZeW9sbWN5YnQ3dzNNN3NQOC9XVnYvWUJnQUZuREppTEVOeW5WUnhlQTNBSGl4RndHTGY1RTM4NlI4QXhwcjJpTzJCemtSSmM2cExnWTk1Z21yUnd0dmhxYldHMmdENWZBSDJIUm53cENtbXhGOHZ5dUNLL3pQb0o2N2Y2dG5iL0puYVZLR1ZqbTNCTEJ1VXVGbVZlN082N3c1NDhKZkkyKytQT2lMdVRLcFgxRWYwczgyeGpta0hQY2EwL0l1b2JZRGo5cUxqa1lMaWtFQTBOUjZTZkNpT2kxeHIxV08wSGtoTmRtVndyRkRudE8zZ0Q4YWdlRU5PdGFpZEp3MlN6VlcvaDVjM2duRlVxYTV0MlZCK0J6ZXdBODM0TTU4ZktQWG9VcWJKYzBSTzVoWGlSQlRtbjh0M0NDVjVJZHg5UlZlZkswS0xJTnBIUlJwREVUM1JCVExjNjdIOEJ4M2lUNzUwQ0FBQT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["myFamilyNames"],"name":[1],"type":["chr"],"align":["left"]},{"label":["myFamilyAges"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["myFamilyGenders"],"name":[3],"type":["chr"],"align":["left"]},{"label":["myFamilyWeights"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Dad","2":"43","3":"Male","4":"188","_rn_":"1"},{"1":"Mom","2":"42","3":"Female","4":"136","_rn_":"2"},{"1":"Sis","2":"12","3":"Female","4":"83","_rn_":"3"}],"options":{"columns":{"min":{},"max":[10],"total":[4]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG50YWlsKG15RmFtaWx5LCAzKVxuYGBgIn0= -->
+<pre class="r"><code>
+tail(myFamily, 3)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MywibmNvbCI6NCwic3VtbWFyeSI6W119LCJyZGYiOiJINHNJQUFBQUFBQUFBMlZSdlU3RE1CQyt4azVSSTFJcXdRTXdzaVFETExBVlZJV0pEbEJFVjVPWU5NS3hveVFGdXZGb2ZiS0NZL3VnQkV1bisrNDczLy85YkhrUkxBTUFJRUFKQWVKckNQN2pJb2t1QWFpbmpRRlFHSFg2UTM4NjFvQnFtZGdJNHlBUFJZUHdwbFlJWnlyWGF0ekI2Um1ZTnoxMStnVHc3U2NhSnJ4a2dqdUwzdjFpOUdDK3hkYm1tWDlhbldDNlB4MzdrcFc4Y1VXb0k4TnlrN0N5RUp1NWNWcnlFTW5yL0ljN1F1Nld5NHpYLytnblh1U3J0dW5WSE5YcVBjYTZvUm5PU3JjMXY5OWdLbGlERFNJWlpLeGw4VXV0YzJocjF3czVVRlZiS0ttRHZPNFd3MTd3b080Ums3WHN1c21pZExXV3I5SDVWYzlQS3RtZEtUQ1VsZEJwc29lcGJjUDdjdUZEUEF5WGVTSHhUTDVnejF4ZzVveS9PVGpXU3pFN2lhdTZrQzBPcXRrbWJsWExNQ1JJbFVER2pBNjdiOGhSMHNXaEFnQUEifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["myFamilyNames"],"name":[1],"type":["chr"],"align":["left"]},{"label":["myFamilyAges"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["myFamilyGenders"],"name":[3],"type":["chr"],"align":["left"]},{"label":["myFamilyWeights"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Sis","2":"12","3":"Female","4":"83","_rn_":"3"},{"1":"Bro","2":"8","3":"Male","4":"61","_rn_":"4"},{"1":"Dog","2":"5","3":"Female","4":"44","_rn_":"5"}],"options":{"columns":{"min":{},"max":[10],"total":[4]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="accessing-columns-in-a-data-frame" class="section level2">
+<h2>ACCESSING COLUMNS IN A DATA FRAME</h2>
+<p>Using an existing vector … Adding a value</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXlGYW1pbHkkbXlGYW1pbHlBZ2VzXG5gYGAifQ== -->
+<pre class="r"><code>myFamily$myFamilyAges</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDQzIDQyIDEyICA4ICA1XG4ifQ== -->
+<pre><code>[1] 43 42 12  8  5</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXlGYW1pbHlBZ2VzIDwtIGMobXlGYW1pbHlBZ2VzLCAxMSlcbm15RmFtaWx5QWdlc1xuYGBgIn0= -->
+<pre class="r"><code>myFamilyAges &lt;- c(myFamilyAges, 11)
+myFamilyAges</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDQzIDQyIDEyICA4ICA1IDExXG4ifQ== -->
+<pre><code>[1] 43 42 12  8  5 11</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXlGYW1pbHkkbXlGYW1pbHlBZ2VzICMtLS0gdGhpcyBjYXVzZXMgYW4gZXJyb3JcbmBgYCJ9 -->
+<pre class="r"><code>myFamily$myFamilyAges #--- this causes an error</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDQzIDQyIDEyICA4ICA1XG4ifQ== -->
+<pre><code>[1] 43 42 12  8  5</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXlGYW1pbHkkbXlGYW1pbHlBZ2VzIDwtIGMobXlGYW1pbHkkbXlGYW1pbHlBZ2VzLCAxMSlcbmBgYCJ9 -->
+<pre class="r"><code>myFamily$myFamilyAges &lt;- c(myFamily$myFamilyAges, 11)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gYCQ8LS5kYXRhLmZyYW1lYChgKnRtcCpgLCBteUZhbWlseUFnZXMsIHZhbHVlID0gYyg0MywgNDIsIDEyLCAgOiBcbiAgcmVwbGFjZW1lbnQgaGFzIDYgcm93cywgZGF0YSBoYXMgNVxuIn0= -->
+<pre><code>Error in `$&lt;-.data.frame`(`*tmp*`, myFamilyAges, value = c(43, 42, 12,  : 
+  replacement has 6 rows, data has 5</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiRGF0YSBTY2llbmNlIGZvciBCdXNpbmVzcyBXaXRoIFIgLSBDSDAyIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgojIyB0aGlzIGlzIGEgdGVzdAoKYGBge3J9CnBsb3QoY2FycykKYGBgCgoKCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiRGF0YSBTY2llbmNlIGZvciBCdXNpbmVzcyBXaXRoIFIgLSBDSDAyIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgojIyBDUkVBVElORyBEQVRBIEZSQU1FUyAKCkZpcnN0IGNyZWF0ZSB2ZWN0b3JzIGZvciB0aGUgZGF0YSBmcmFtZQoKYGBge3J9Cm15RmFtaWx5TmFtZXMgPC0gYygnRGFkJywgJ01vbScsJ1NpcycsJ0JybycsJ0RvZycpCm15RmFtaWx5QWdlcyA8LSBjKDQzLDQyLDEyLDgsNSkKbXlGYW1pbHlHZW5kZXJzIDwtIGMoJ01hbGUnLCdGZW1hbGUnLCdGZW1hbGUnLCdNYWxlJywnRmVtYWxlJykKbXlGYW1pbHlXZWlnaHRzIDwtIGMoMTg4LDEzNiw4Myw2MSw0NCkKYGBgCgpDcmVhdGUgdGhlIGRhdGEgZnJhbWUgZnJvbSB0aGUgYWJvdmUgdmVjdG9ycwoKYGBge3J9Cm15RmFtaWx5IDwtIGRhdGEuZnJhbWUobXlGYW1pbHlOYW1lcyxteUZhbWlseUFnZXMsbXlGYW1pbHlHZW5kZXJzLG15RmFtaWx5V2VpZ2h0cykKbXlGYW1pbHkKYGBgCiMjIEVYUExPUklORyBEQVRBIEZSQU1FUwoKYGBge3J9CnN0cihteUZhbWlseSkKYGBgCgpgYGB7cn0Kc3VtbWFyeShteUZhbWlseSkKYGBgCgpgYGB7cn0KaGVhZChteUZhbWlseSwgMykKCnRhaWwobXlGYW1pbHksIDMpCmBgYAoKIyMgQUNDRVNTSU5HIENPTFVNTlMgSU4gQSBEQVRBIEZSQU1FCgpVc2luZyBhbiBleGlzdGluZyB2ZWN0b3IgLi4uIEFkZGluZyBhIHZhbHVlCgpgYGB7cn0KbXlGYW1pbHkkbXlGYW1pbHlBZ2VzCgpteUZhbWlseUFnZXMgPC0gYyhteUZhbWlseUFnZXMsIDExKQpteUZhbWlseUFnZXMKCm15RmFtaWx5JG15RmFtaWx5QWdlcyAjLS0tIHRoaXMgY2F1c2VzIGFuIGVycm9yCgpteUZhbWlseSRteUZhbWlseUFnZXMgPC0gYyhteUZhbWlseSRteUZhbWlseUFnZXMsIDExKQpgYGAKCgo=</div>
 
 
 
