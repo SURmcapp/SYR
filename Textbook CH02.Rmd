@@ -1,6 +1,8 @@
 ---
 title: "Data Science for Business With R - CH02"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
 
 ## CREATING DATA FRAMES 
@@ -22,13 +24,19 @@ myFamily
 ```
 ## EXPLORING DATA FRAMES
 
+structure function    
+
 ```{r}
 str(myFamily)
 ```
 
+summary function
+
 ```{r}
 summary(myFamily)
 ```
+
+head and tail functions show limited results
 
 ```{r}
 head(myFamily, 3)
@@ -38,17 +46,73 @@ tail(myFamily, 3)
 
 ## ACCESSING COLUMNS IN A DATA FRAME
 
-Using an existing vector ... Adding a value
+To view on row of the data frame
 
 ```{r}
 myFamily$myFamilyAges
+```
 
+Adding a value to one of the original vectors does not change the data frame
+
+```{r}
 myFamilyAges <- c(myFamilyAges, 11)
 myFamilyAges
 
-myFamily$myFamilyAges #--- this causes an error
-
-myFamily$myFamilyAges <- c(myFamily$myFamilyAges, 11)
+myFamily$myFamilyAges
 ```
 
+- myFamily\$myFamilyAges <- c(myFamily\$myFamilyAges, 11)
+    - if you try to add an element to one row of an existing data frame
+    - It will cause an error and the myFamily data frame will remain changed
+    - Data frames must remain rectangular
+
+## CASE STUDY: calculating NPS using a data frame (net promoter score)
+
+```{r}
+#--- Six surveys
+ltr <- c(9,9,7,6,8,7)
+TypeOfTravel <- c('Business Travel','Business Travel','Business Travel',' Mileage',
+                   'Personal Travel','Personal Travel')
+survey <- data.frame(ltr, TypeOfTravel)
+
+#--- look at the newly created data frame
+str(survey)
+
+#--- Calculate the number of promoters and detractors
+numP <- sum(survey$ltr > 8)
+numD <- sum(survey$ltr < 7 )
+
+#--- Now calculate NPS
+total <- nrow(survey)
+nps <- (numP/total - numD/total) * 100
+nps
+
+survey
+
+#--- do the same analysis, but for business travel tickets
+busTravelDF <- survey[survey$TypeOfTravel == "Business Travel",]
+
+#--- Calculate number of promoters and detractors
+numP <- sum(busTravelDF$ltr > 8)
+numD <- sum(busTravelDF$ltr < 7 )
+
+#--- Calculate Business Travel NPS
+total <- nrow(busTravelDF)
+bus.nps <- (numP/total - numD/total) * 100
+bus.nps
+```
+
+
+
+```{r}
+str(survey$TypeOfTravel) #--- expected output is different in the book
+
+levels(survey$TypeOfTravel) #--- expected output is different in the book
+```
+
+```{r}
+nps
+
+bus.nps
+```
 

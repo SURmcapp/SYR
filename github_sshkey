@@ -1,0 +1,16 @@
+
+
+
+
+ssh-keygen -t ed25519 -C "your_email@example.com"
+
+
+$ pbcopy < ~/.ssh/id_ed25519.pub
+# Copies the contents of the id_ed25519.pub file to your clipboard
+Tip: If pbcopy isn't working, you can locate the hidden .ssh folder, open the file in your favorite text editor, and copy it to your clipboard.
+
+
+
+
+#--- directions on setting up github repo
+https://kbroman.org/github_tutorial/pages/init.html
