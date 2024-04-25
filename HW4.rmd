@@ -3,7 +3,7 @@
 
 
 ```{r}
-# Enter your name here: 
+# Enter your name here: Mark Cappielllo
 ```
 
 ### Attribution statement: (choose only one and delete the rest)
@@ -11,8 +11,6 @@
 
 ```{r}
 # 1. I did this homework by myself, with help from the book and the professor.
-# 2. I did this homework with help from the book and the professor and these Internet sources:
-# 3. I did this homework with help from <Name of another student> but did not cut and paste any code.
 ```
 
 Reminders of things to practice from previous weeks: <br>
@@ -27,9 +25,17 @@ Each of these lines of code **must be commented** (the comment must that explain
 
 
 ```{r}
+#--- the library() function is used to load the jsonlite package so that data in json format can be utilized.
 library(jsonlite)
+#--- the url() function pulls data in from the web and loads it into a variable called dataset
 dataset <- url("https://intro-datascience.s3.us-east-2.amazonaws.com/role.json")
+#--- the fromJSON() function from the jsonlite package is used to load data into a variable called readlines
 readlines <- jsonlite::fromJSON(dataset)
+#--- data from the readlines variable object is loaded into a variable called df
+#--- readlines contains data that has nested layers that you see using the str() function
+#--- you can also use the names() function so that you can see each layer's column names more clearly
+#--- first, names(readlines) this returns "meta" and "objects"
+#--- then use names(readlines$objects) to see the columns that are available on that level
 df <- readlines$objects$person
 ```
 
@@ -37,7 +43,16 @@ A.	Explore the **df** dataframe (e.g., using head() or whatever you think is bes
 
 
 ```{r}
+names(readlines)
+names(readlines$objects)
+names(readlines$objects$person)
 
+head(df, 5)
+str(df)
+summary(df)
+
+nrow(df)
+ncol(df)
 
 ```
 
@@ -49,13 +64,19 @@ o	How many columns and what does each column represent?<br>
 
 
 ```{r}
-
+#--- the df dataset contains information about US senators 
+#--- there are 100 rows in this data set.  Each row contains information about about a US senator
+#--- there are 17 columns and each column contains a list of specific data points about US senators 
 ```
 
 C. What does running this line of code do? Explain in a comment:
 
 
 ```{r}
+#--- the substr() function is used on the birthday column of the df data frame.
+#--- it extracts a substring of the value in each row, which in this case is each senator's birthdate
+#--- by passing the values 1 and 4 as the second and third arguments, the first four characters will be extracted 
+#--- given the format of the date in the column, the first four characters are the year of birth.
 vals <- substr(df$birthday,1,4)
 ```
 
@@ -64,13 +85,26 @@ D. Create a new attribute 'age' - how old the person is
 
 
 ```{r}
-
+current_year <- as.numeric(substr(Sys.Date(),1,4))
+vals <- as.numeric(vals)
+df$age <- current_year - vals
 ```
 
 E. Create a function that reads in the role json dataset, and adds the age attribute to the dataframe, and returns that dataframe
 
 
 ```{r}
+myDataset <- url("https://intro-datascience.s3.us-east-2.amazonaws.com/role.json")
+
+dfAges <- function(myDataset){
+  myReadlines <- jsonlite::fromJSON(myDataset)
+  myData <- myReadlines$objects$person
+  myYear <- as.numeric(substr(Sys.Date(),1,4))
+  myDate<- as.numeric(substr(myData$birthday,1,4))
+  myData$age <- myYear - myDate
+  return(myData)
+}
+
 
 ```
 
@@ -78,7 +112,7 @@ F. Use (call, invoke) the function, and store the results in df
 
 
 ```{r}
-
+df <- dfAges(myDataset)
 ```
 
 ## Part 2: Investigate the resulting dataframe 'df'
@@ -87,6 +121,8 @@ A.	How many senators are women?
 
 
 ```{r}
+women <- nrow(df[df$gender=='female',])
+women
 
 ```
 
@@ -94,26 +130,31 @@ B.	How many senators have a YouTube account?
 
 
 ```{r}
-
+youtube <- nrow(df[!is.na(df$youtubeid),])
+youtube
 ```
 
 C.	 How many women senators have a YouTube account?
 
 
 ```{r}
-
+women_with_youtube <- nrow(df[df$gender == 'female' & !is.na(df$youtubeid),])
+women_with_youtube
 ```
 
 D.	Create a new dataframe called **youtubeWomen** that only includes women senators who have a YouTube account.   
 
 
 ```{r}
-
+youtubeWomen <- df[df$gender == 'female' & !is.na(df$youtubeid),]
+youtubeWomen
 ```
 
 E.	Make a histogram of the **age** of senators in **youtubeWomen**, and then another for the senetors in **df**. Add a comment describing the shape of the distributions.
 
 
 ```{r}
+hist(youtubeWomen$age)
 
+hist(df$age)
 ```
