@@ -1,0 +1,119 @@
+# Introduction to Data Science HW 4
+##### Copyright Jeffrey Stanton, Jeffrey Saltz, and Jasmina Tacheva
+
+
+```{r}
+# Enter your name here: 
+```
+
+### Attribution statement: (choose only one and delete the rest)
+
+
+```{r}
+# 1. I did this homework by myself, with help from the book and the professor.
+# 2. I did this homework with help from the book and the professor and these Internet sources:
+# 3. I did this homework with help from <Name of another student> but did not cut and paste any code.
+```
+
+Reminders of things to practice from previous weeks: <br>
+Descriptive statistics: 	mean( ) max( ) min( )<br>
+Coerce to numeric:		as.numeric( )<br>
+
+## Part 1: Use the Starter Code 
+
+Below, I have provided a starter file to help you. <br>
+
+Each of these lines of code **must be commented** (the comment must that explains what is going on, so that I know you understand the code and results).
+
+
+```{r}
+library(jsonlite)
+dataset <- url("https://intro-datascience.s3.us-east-2.amazonaws.com/role.json")
+readlines <- jsonlite::fromJSON(dataset)
+df <- readlines$objects$person
+```
+
+A.	Explore the **df** dataframe (e.g., using head() or whatever you think is best).
+
+
+```{r}
+
+
+```
+
+B.	Explain the dataset <br>
+o	What is the dataset about? <br>
+o	How many rows are there and what does a row represent?<br>
+o	How many columns and what does each column represent?<br>
+
+
+
+```{r}
+
+```
+
+C. What does running this line of code do? Explain in a comment:
+
+
+```{r}
+vals <- substr(df$birthday,1,4)
+```
+
+D. Create a new attribute 'age' - how old the person is 
+**Hint:** You may need to convert it to numeric first.
+
+
+```{r}
+
+```
+
+E. Create a function that reads in the role json dataset, and adds the age attribute to the dataframe, and returns that dataframe
+
+
+```{r}
+
+```
+
+F. Use (call, invoke) the function, and store the results in df
+
+
+```{r}
+
+```
+
+## Part 2: Investigate the resulting dataframe 'df'
+
+A.	How many senators are women? 
+
+
+```{r}
+
+```
+
+B.	How many senators have a YouTube account?  
+
+
+```{r}
+
+```
+
+C.	 How many women senators have a YouTube account?
+
+
+```{r}
+
+```
+
+D.	Create a new dataframe called **youtubeWomen** that only includes women senators who have a YouTube account.   
+
+
+```{r}
+
+```
+
+E.	Make a histogram of the **age** of senators in **youtubeWomen**, and then another for the senetors in **df**. Add a comment describing the shape of the distributions.
+
+
+```{r}
+
+```
