@@ -115,4 +115,45 @@ nps
 
 bus.nps
 ```
+## CHAPTER CHALLENGES
+
+1. Use c() to create new variable myFoods containing five values.
+
+```{r}
+myFoods <- c('Pizza','Pizza','Steak','Cereal','Steak')
+
+str(myFoods)
+```
+
+2. add myFoods to the myFamily data frame
+
+```{r}
+myFamily$myFoods <- myFoods
+```
+
+3. Run the summary() function on the new myFamily
+
+```{r}
+summary(myFamily)
+#--- myFamily$myFoods is data type or mode character
+```
+
+4. create an expression that shows a list of TRUE and FALSE values. show TRUE when myAge is less than 40 
+assign results to myIndex
+
+```{r}
+myIndex <- myFamily$myFamilyAges < 40
+```
+
+5. use myIndex to show the favorite food of each kid
+
+```{r}
+myFamily$myFoods[myIndex]
+```
+
+6. invert the selection using ! to show favorite foods of adults
+
+```{r}
+myFamily$myFoods[!myIndex]
+```
 

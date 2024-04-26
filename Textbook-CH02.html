@@ -1637,7 +1637,7 @@ myFamilyWeights &lt;- c(188,136,83,61,44)</code></pre>
 myFamily</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["myFamilyNames"],"name":[1],"type":["chr"],"align":["left"]},{"label":["myFamilyAges"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["myFamilyGenders"],"name":[3],"type":["chr"],"align":["left"]},{"label":["myFamilyWeights"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Dad","2":"43","3":"Male","4":"188"},{"1":"Mom","2":"42","3":"Female","4":"136"},{"1":"Sis","2":"12","3":"Female","4":"83"},{"1":"Bro","2":"8","3":"Male","4":"61"},{"1":"Dog","2":"5","3":"Female","4":"44"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["myFamilyNames"],"name":[1],"type":["fct"],"align":["left"]},{"label":["myFamilyAges"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["myFamilyGenders"],"name":[3],"type":["fct"],"align":["left"]},{"label":["myFamilyWeights"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Dad","2":"43","3":"Male","4":"188"},{"1":"Mom","2":"42","3":"Female","4":"136"},{"1":"Sis","2":"12","3":"Female","4":"83"},{"1":"Bro","2":"8","3":"Male","4":"61"},{"1":"Dog","2":"5","3":"Female","4":"44"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1646,30 +1646,30 @@ myFamily</code></pre>
 <p>structure function</p>
 <pre class="r"><code>str(myFamily)</code></pre>
 <pre><code>## &#39;data.frame&#39;:    5 obs. of  4 variables:
-##  $ myFamilyNames  : chr  &quot;Dad&quot; &quot;Mom&quot; &quot;Sis&quot; &quot;Bro&quot; ...
+##  $ myFamilyNames  : Factor w/ 5 levels &quot;Bro&quot;,&quot;Dad&quot;,&quot;Dog&quot;,..: 2 4 5 1 3
 ##  $ myFamilyAges   : num  43 42 12 8 5
-##  $ myFamilyGenders: chr  &quot;Male&quot; &quot;Female&quot; &quot;Female&quot; &quot;Male&quot; ...
+##  $ myFamilyGenders: Factor w/ 2 levels &quot;Female&quot;,&quot;Male&quot;: 2 1 1 2 1
 ##  $ myFamilyWeights: num  188 136 83 61 44</code></pre>
 <p>summary function</p>
 <pre class="r"><code>summary(myFamily)</code></pre>
-<pre><code>##  myFamilyNames       myFamilyAges myFamilyGenders    myFamilyWeights
-##  Length:5           Min.   : 5    Length:5           Min.   : 44.0  
-##  Class :character   1st Qu.: 8    Class :character   1st Qu.: 61.0  
-##  Mode  :character   Median :12    Mode  :character   Median : 83.0  
-##                     Mean   :22                       Mean   :102.4  
-##                     3rd Qu.:42                       3rd Qu.:136.0  
-##                     Max.   :43                       Max.   :188.0</code></pre>
+<pre><code>##  myFamilyNames  myFamilyAges myFamilyGenders myFamilyWeights
+##  Bro:1         Min.   : 5    Female:3        Min.   : 44.0  
+##  Dad:1         1st Qu.: 8    Male  :2        1st Qu.: 61.0  
+##  Dog:1         Median :12                    Median : 83.0  
+##  Mom:1         Mean   :22                    Mean   :102.4  
+##  Sis:1         3rd Qu.:42                    3rd Qu.:136.0  
+##                Max.   :43                    Max.   :188.0</code></pre>
 <p>head and tail functions show limited results</p>
 <pre class="r"><code>head(myFamily, 3)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["myFamilyNames"],"name":[1],"type":["chr"],"align":["left"]},{"label":["myFamilyAges"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["myFamilyGenders"],"name":[3],"type":["chr"],"align":["left"]},{"label":["myFamilyWeights"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Dad","2":"43","3":"Male","4":"188","_rn_":"1"},{"1":"Mom","2":"42","3":"Female","4":"136","_rn_":"2"},{"1":"Sis","2":"12","3":"Female","4":"83","_rn_":"3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["myFamilyNames"],"name":[1],"type":["fct"],"align":["left"]},{"label":["myFamilyAges"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["myFamilyGenders"],"name":[3],"type":["fct"],"align":["left"]},{"label":["myFamilyWeights"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Dad","2":"43","3":"Male","4":"188","_rn_":"1"},{"1":"Mom","2":"42","3":"Female","4":"136","_rn_":"2"},{"1":"Sis","2":"12","3":"Female","4":"83","_rn_":"3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <pre class="r"><code>tail(myFamily, 3)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["myFamilyNames"],"name":[1],"type":["chr"],"align":["left"]},{"label":["myFamilyAges"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["myFamilyGenders"],"name":[3],"type":["chr"],"align":["left"]},{"label":["myFamilyWeights"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Sis","2":"12","3":"Female","4":"83","_rn_":"3"},{"1":"Bro","2":"8","3":"Male","4":"61","_rn_":"4"},{"1":"Dog","2":"5","3":"Female","4":"44","_rn_":"5"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["myFamilyNames"],"name":[1],"type":["fct"],"align":["left"]},{"label":["myFamilyAges"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["myFamilyGenders"],"name":[3],"type":["fct"],"align":["left"]},{"label":["myFamilyWeights"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Sis","2":"12","3":"Female","4":"83","_rn_":"3"},{"1":"Bro","2":"8","3":"Male","4":"61","_rn_":"4"},{"1":"Dog","2":"5","3":"Female","4":"44","_rn_":"5"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1709,7 +1709,7 @@ survey &lt;- data.frame(ltr, TypeOfTravel)
 str(survey)</code></pre>
 <pre><code>## &#39;data.frame&#39;:    6 obs. of  2 variables:
 ##  $ ltr         : num  9 9 7 6 8 7
-##  $ TypeOfTravel: chr  &quot;Business Travel&quot; &quot;Business Travel&quot; &quot;Business Travel&quot; &quot; Mileage&quot; ...</code></pre>
+##  $ TypeOfTravel: Factor w/ 3 levels &quot; Mileage&quot;,&quot;Business Travel&quot;,..: 2 2 2 1 3 3</code></pre>
 <pre class="r"><code>#--- Calculate the number of promoters and detractors
 numP &lt;- sum(survey$ltr &gt; 8)
 numD &lt;- sum(survey$ltr &lt; 7 )
@@ -1722,7 +1722,7 @@ nps</code></pre>
 <pre class="r"><code>survey</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["ltr"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["TypeOfTravel"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"9","2":"Business Travel"},{"1":"9","2":"Business Travel"},{"1":"7","2":"Business Travel"},{"1":"6","2":"Mileage"},{"1":"8","2":"Personal Travel"},{"1":"7","2":"Personal Travel"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["ltr"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["TypeOfTravel"],"name":[2],"type":["fct"],"align":["left"]}],"data":[{"1":"9","2":"Business Travel"},{"1":"9","2":"Business Travel"},{"1":"7","2":"Business Travel"},{"1":"6","2":"Mileage"},{"1":"8","2":"Personal Travel"},{"1":"7","2":"Personal Travel"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <pre class="r"><code>#--- do the same analysis, but for business travel tickets
@@ -1738,13 +1738,54 @@ bus.nps &lt;- (numP/total - numD/total) * 100
 bus.nps</code></pre>
 <pre><code>## [1] 66.66667</code></pre>
 <pre class="r"><code>str(survey$TypeOfTravel) #--- expected output is different in the book</code></pre>
-<pre><code>##  chr [1:6] &quot;Business Travel&quot; &quot;Business Travel&quot; &quot;Business Travel&quot; &quot; Mileage&quot; ...</code></pre>
+<pre><code>##  Factor w/ 3 levels &quot; Mileage&quot;,&quot;Business Travel&quot;,..: 2 2 2 1 3 3</code></pre>
 <pre class="r"><code>levels(survey$TypeOfTravel) #--- expected output is different in the book</code></pre>
-<pre><code>## NULL</code></pre>
+<pre><code>## [1] &quot; Mileage&quot;        &quot;Business Travel&quot; &quot;Personal Travel&quot;</code></pre>
 <pre class="r"><code>nps</code></pre>
 <pre><code>## [1] 16.66667</code></pre>
 <pre class="r"><code>bus.nps</code></pre>
 <pre><code>## [1] 66.66667</code></pre>
+</div>
+<div id="chapter-challenges" class="section level2">
+<h2>CHAPTER CHALLENGES</h2>
+<ol style="list-style-type: decimal">
+<li>Use c() to create new variable myFoods containing five values.</li>
+</ol>
+<pre class="r"><code>myFoods &lt;- c(&#39;Pizza&#39;,&#39;Pizza&#39;,&#39;Steak&#39;,&#39;Cereal&#39;,&#39;Steak&#39;)
+
+str(myFoods)</code></pre>
+<pre><code>##  chr [1:5] &quot;Pizza&quot; &quot;Pizza&quot; &quot;Steak&quot; &quot;Cereal&quot; &quot;Steak&quot;</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>add myFoods to the myFamily data frame</li>
+</ol>
+<pre class="r"><code>myFamily$myFoods &lt;- myFoods</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Run the summary() function on the new myFamily</li>
+</ol>
+<pre class="r"><code>summary(myFamily)</code></pre>
+<pre><code>##  myFamilyNames  myFamilyAges myFamilyGenders myFamilyWeights   myFoods         
+##  Bro:1         Min.   : 5    Female:3        Min.   : 44.0   Length:5          
+##  Dad:1         1st Qu.: 8    Male  :2        1st Qu.: 61.0   Class :character  
+##  Dog:1         Median :12                    Median : 83.0   Mode  :character  
+##  Mom:1         Mean   :22                    Mean   :102.4                     
+##  Sis:1         3rd Qu.:42                    3rd Qu.:136.0                     
+##                Max.   :43                    Max.   :188.0</code></pre>
+<pre class="r"><code>#--- myFamily$myFoods is data type or mode character</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>create an expression that shows a list of TRUE and FALSE values.
+show TRUE when myAge is less than 40 assign results to myIndex</li>
+</ol>
+<pre class="r"><code>myIndex &lt;- myFamily$myFamilyAges &lt; 40</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>use myIndex to show the favorite food of each kid</li>
+</ol>
+<pre class="r"><code>myFamily$myFoods[myIndex]</code></pre>
+<pre><code>## [1] &quot;Steak&quot;  &quot;Cereal&quot; &quot;Steak&quot;</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>invert the selection using ! to show favorite foods of adults</li>
+</ol>
+<pre class="r"><code>myFamily$myFoods[!myIndex]</code></pre>
+<pre><code>## [1] &quot;Pizza&quot; &quot;Pizza&quot;</code></pre>
 </div>
 
 
