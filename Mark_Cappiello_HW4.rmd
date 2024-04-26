@@ -1,13 +1,11 @@
 # Introduction to Data Science HW 4
 ##### Copyright Jeffrey Stanton, Jeffrey Saltz, and Jasmina Tacheva
 
-
 ```{r}
 # Enter your name here: Mark Cappielllo
 ```
 
 ### Attribution statement: (choose only one and delete the rest)
-
 
 ```{r}
 # 1. I did this homework by myself, with help from the book and the professor.
@@ -41,14 +39,19 @@ df <- readlines$objects$person
 
 A.	Explore the **df** dataframe (e.g., using head() or whatever you think is best).
 
-
 ```{r}
+#--- the readlines() function helps you to view different levels of this nested dataset.  By executing the following three commands you can see what column exist on each level
 names(readlines)
 names(readlines$objects)
 names(readlines$objects$person)
 
+#--- the head() function lets you see the first five rows of a dataframe to help yo understand what kind of data is inside 
 head(df, 5)
+
+#--- the structure() functions tells you more about the data from
 str(df)
+
+#--- the summary() function gives you additional info about a dataframe.such as column names, the mode of the data in each column, if the column contains numeric data it will give you some basic statistics about the column as well.
 summary(df)
 
 nrow(df)
@@ -154,7 +157,9 @@ E.	Make a histogram of the **age** of senators in **youtubeWomen**, and then ano
 
 
 ```{r}
+#--- for this dataset it seems to be skewed so that there are more data points to the left and fewer to the right. There is also a large gap a in one of the intervals on the right where there were no observations. There may be a few outliers in the data. 
 hist(youtubeWomen$age)
 
+#for this dataset the histogram has a more symmetrical shape. and a more normal distributions.
 hist(df$age)
 ```
