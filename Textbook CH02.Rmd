@@ -143,6 +143,7 @@ assign results to myIndex
 
 ```{r}
 myIndex <- myFamily$myFamilyAges < 40
+myIndex
 ```
 
 5. use myIndex to show the favorite food of each kid

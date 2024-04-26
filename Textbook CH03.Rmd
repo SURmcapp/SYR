@@ -1,0 +1,181 @@
+---
+title: "Data Science for Business With R - CH03"
+output:
+  html_document:
+    df_print: paged
+---
+
+## READING A CSV TEXT FILE
+
+```{r}
+library(readr)
+
+urlToRead <- "http://www2.census.gov/programs-surveys/popest/tables/2010-2011/state/totals/nst-est2011-01.csv"
+
+testFrame <- read_csv(url(urlToRead))
+
+#testFrame <- spec(testFrame)
+str(testFrame)
+```
+
+## REMOVING ROWS AND COLUMNS
+
+```{r}
+testFrame <- testFrame[-1:-8,]
+```
+
+
+```{r}
+summary(testFrame[,6-10])
+```
+```{r}
+testFrame <- testFrame[,1:5]
+```
+
+```{r}
+tail(testFrame,5)
+```
+
+```{r}
+testFrame <- testFrame[-54:-58,]
+```
+
+```{r}
+testFrame <- testFrame[complete.cases(testFrame),]
+```
+## RENAMING ROWS AND COLUMNS
+
+
+```{r}
+colnames(testFrame)
+```
+
+```{r}
+cnames <- c("Region","Census","Estimate","April2010","April2011")
+
+colnames(testFrame) <- cnames
+
+colnames(testFrame)
+
+head(testFrame, 5)
+```
+## CLEANING UP THE ELEMENTS
+
+```{r}
+testFrame$Region <- gsub("\\.","",as.character(testFrame$Region))
+
+```
+
+```{r}
+testFrame$Census <- as.numeric(gsub(",","", testFrame$Census))
+
+testFrame$Estimate <- as.numeric(gsub(",","", testFrame$Estimate))
+
+testFrame$April2010 <- as.numeric(gsub(",","", testFrame$April2010))
+```
+
+
+```{r}
+str(testFrame)
+
+head(testFrame, 5)
+```
+
+## SORTING AND SUBSETTING DATA FRAMES
+
+```{r}
+testFrame$Change <- testFrame$April2011 - testFrame$April2010
+
+avgChange <- mean(testFrame$Change)
+
+```
+
+
+```{r}
+testFrame[testFrame$Change > avgChange,]
+```
+
+
+
+```{r}
+growingStates <- testFrame[testFrame$Change > avgChange, ]
+```
+
+
+```{r}
+growingStates<- growingStates[order(growingStates$Change),]
+```
+
+```{r}
+head(growingStates,5)
+```
+
+
+```{r}
+growingStates <- growingStates[order(growingStates$Change, decreasing = TRUE),]
+head(growingStates, 5)
+
+```
+
+
+## SORTING AND SUBSETTING DATA FRAMES USING TIDYVERSE
+
+```{r}
+library("tidyverse")
+
+testFrame <- mutate(testFrame, Change = April2011 - April2010)
+
+avgChange <- mean( pull(testFrame, Change))
+growingStates <- filter(testFrame, Change > avgChange)
+growingStates <- arrange(growingStates, desc(Change))
+growingStates <- slice(growingStates, 1:5)
+select(growingStates, Region, April2011, Change)
+
+```
+
+
+```{r}
+testFrame %>% 
+  mutate(Change = (April2011 - April2010)) %>% 
+  filter(Change > mean(Change)) %>%
+  arrange(desc(Change)) %>%
+  slice(1:5) %>%
+  select(Region, April2011, Change)
+
+```
+
+
+```{r}
+
+testFrame %>% 
+  mutate(Change = (April2011 - April2010)) %>% 
+  filter(Change > mean(Change)) %>%
+  arrange(desc(Change)) %>%
+  slice(1:5) %>%
+  select(Region, April2011, Change) -> growingStates
+
+```
+
+myTest: 
+
+```{r}
+row_max_age <- testFrame[which.max(testFrame$Change), ]
+row_max_age
+```
+
+## CASE STUDY: READING, CLEANING, AND  EXPLORING A SURVEY DATASET
+
+- Case Key Points
+    - Read a .csv file that has survey data
+    - Clean the dataset (survey) by removing NSa
+    - Explore likelyhood to recommend (LTR), calculating the mean of LTR across different groups within the survey
+    
+```{r}
+# USe RStudio's data import:
+#. File -> Import Dataset -> From Text (readr)
+#. the following code was created
+library(readr)
+#--- this dataset is unavailable.  smallSurvey <- read_csv("smallSurvey.csv")
+```
+    
+    

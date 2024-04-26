@@ -11,7 +11,7 @@
 
 
 
-<title>Data Science for Business With R - CH02</title>
+<title>Data Science for Business With R - CH03</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1620,181 +1620,237 @@ display: none;
 
 
 <h1 class="title toc-ignore">Data Science for Business With R -
-CH02</h1>
+CH03</h1>
 
 </div>
 
 
-<div id="creating-data-frames" class="section level2">
-<h2>CREATING DATA FRAMES</h2>
-<p>First create vectors for the data frame</p>
-<pre class="r"><code>myFamilyNames &lt;- c(&#39;Dad&#39;, &#39;Mom&#39;,&#39;Sis&#39;,&#39;Bro&#39;,&#39;Dog&#39;)
-myFamilyAges &lt;- c(43,42,12,8,5)
-myFamilyGenders &lt;- c(&#39;Male&#39;,&#39;Female&#39;,&#39;Female&#39;,&#39;Male&#39;,&#39;Female&#39;)
-myFamilyWeights &lt;- c(188,136,83,61,44)</code></pre>
-<p>Create the data frame from the above vectors</p>
-<pre class="r"><code>myFamily &lt;- data.frame(myFamilyNames,myFamilyAges,myFamilyGenders,myFamilyWeights)
-myFamily</code></pre>
+<div id="reading-a-csv-text-file" class="section level2">
+<h2>READING A CSV TEXT FILE</h2>
+<pre class="r"><code>library(readr)
+
+urlToRead &lt;- &quot;http://www2.census.gov/programs-surveys/popest/tables/2010-2011/state/totals/nst-est2011-01.csv&quot;
+
+testFrame &lt;- read_csv(url(urlToRead))</code></pre>
+<pre><code>## New names:
+## Rows: 66 Columns: 10
+## ── Column specification
+## ──────────────────────────────────────────────────────── Delimiter: &quot;,&quot; chr
+## (4): table with row headers in column A and column headers in rows 3 thr... num
+## (1): ...5 lgl (5): ...6, ...7, ...8, ...9, ...10
+## ℹ Use `spec()` to retrieve the full column specification for this data. ℹ
+## Specify the column types or set `show_col_types = FALSE` to quiet this message.
+## • `` -&gt; `...2`
+## • `` -&gt; `...3`
+## • `` -&gt; `...4`
+## • `` -&gt; `...5`
+## • `` -&gt; `...6`
+## • `` -&gt; `...7`
+## • `` -&gt; `...8`
+## • `` -&gt; `...9`
+## • `` -&gt; `...10`</code></pre>
+<pre class="r"><code>#testFrame &lt;- spec(testFrame)
+str(testFrame)</code></pre>
+<pre><code>## spc_tbl_ [66 × 10] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+##  $ table with row headers in column A and column headers in rows 3 through 4. (leading dots indicate sub-parts): chr [1:66] &quot;Table 1. Annual Estimates of the Population for the United States, Regions, States, and Puerto Rico:  April 1, &quot;| __truncated__ &quot;Geographic Area&quot; NA &quot;United States&quot; ...
+##  $ ...2                                                                                                        : chr [1:66] NA &quot;April 1, 2010&quot; &quot;Census&quot; &quot;308,745,538&quot; ...
+##  $ ...3                                                                                                        : chr [1:66] NA NA &quot;Estimates Base&quot; &quot;308,745,538&quot; ...
+##  $ ...4                                                                                                        : chr [1:66] NA &quot;Population Estimates (as of July 1)&quot; &quot;2010&quot; &quot;309,330,219&quot; ...
+##  $ ...5                                                                                                        : num [1:66] NA NA 2.01e+03 3.12e+08 5.55e+07 ...
+##  $ ...6                                                                                                        : logi [1:66] NA NA NA NA NA NA ...
+##  $ ...7                                                                                                        : logi [1:66] NA NA NA NA NA NA ...
+##  $ ...8                                                                                                        : logi [1:66] NA NA NA NA NA NA ...
+##  $ ...9                                                                                                        : logi [1:66] NA NA NA NA NA NA ...
+##  $ ...10                                                                                                       : logi [1:66] NA NA NA NA NA NA ...
+##  - attr(*, &quot;spec&quot;)=
+##   .. cols(
+##   ..   `table with row headers in column A and column headers in rows 3 through 4. (leading dots indicate sub-parts)` = col_character(),
+##   ..   ...2 = col_character(),
+##   ..   ...3 = col_character(),
+##   ..   ...4 = col_character(),
+##   ..   ...5 = col_number(),
+##   ..   ...6 = col_logical(),
+##   ..   ...7 = col_logical(),
+##   ..   ...8 = col_logical(),
+##   ..   ...9 = col_logical(),
+##   ..   ...10 = col_logical()
+##   .. )
+##  - attr(*, &quot;problems&quot;)=&lt;externalptr&gt;</code></pre>
+</div>
+<div id="removing-rows-and-columns" class="section level2">
+<h2>REMOVING ROWS AND COLUMNS</h2>
+<pre class="r"><code>testFrame &lt;- testFrame[-1:-8,]</code></pre>
+<pre class="r"><code>summary(testFrame[,6-10])</code></pre>
+<pre><code>##  table with row headers in column A and column headers in rows 3 through 4. (leading dots indicate sub-parts)
+##  Length:58                                                                                                   
+##  Class :character                                                                                            
+##  Mode  :character                                                                                            
+##                                                                                                              
+##                                                                                                              
+##                                                                                                              
+##                                                                                                              
+##      ...2               ...3                ...5            ...6        
+##  Length:58          Length:58          Min.   :  568158   Mode:logical  
+##  Class :character   Class :character   1st Qu.: 1778227   NA&#39;s:58       
+##  Mode  :character   Mode  :character   Median : 4120608                 
+##                                        Mean   : 6063435                 
+##                                        3rd Qu.: 6648162                 
+##                                        Max.   :37691912                 
+##                                        NA&#39;s   :6                        
+##    ...7           ...8           ...9          ...10        
+##  Mode:logical   Mode:logical   Mode:logical   Mode:logical  
+##  NA&#39;s:58        NA&#39;s:58        NA&#39;s:58        NA&#39;s:58       
+##                                                             
+##                                                             
+##                                                             
+##                                                             
+## </code></pre>
+<pre class="r"><code>testFrame &lt;- testFrame[,1:5]</code></pre>
+<pre class="r"><code>tail(testFrame,5)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["myFamilyNames"],"name":[1],"type":["chr"],"align":["left"]},{"label":["myFamilyAges"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["myFamilyGenders"],"name":[3],"type":["chr"],"align":["left"]},{"label":["myFamilyWeights"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Dad","2":"43","3":"Male","4":"188"},{"1":"Mom","2":"42","3":"Female","4":"136"},{"1":"Sis","2":"12","3":"Female","4":"83"},{"1":"Bro","2":"8","3":"Male","4":"61"},{"1":"Dog","2":"5","3":"Female","4":"44"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["table with row headers in column A and column headers in rows 3 through 4. (leading dots indicate sub-parts)"],"name":[1],"type":["chr"],"align":["left"]},{"label":["...2"],"name":[2],"type":["chr"],"align":["left"]},{"label":["...3"],"name":[3],"type":["chr"],"align":["left"]},{"label":["...4"],"name":[4],"type":["chr"],"align":["left"]},{"label":["...5"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"Note: The April 1, 2010 Population Estimates base reflects changes to the Census 2010 population from geographic program revisions.  It does not reflect changes from the Count Question Resolution program.  See Geographic Terms and Definitions at http://www.census.gov/popest/about/geo/terms.html for a list of the states that are included in each region.","2":"NA","3":"NA","4":"NA","5":"NA"},{"1":"Suggested Citation:","2":"NA","3":"NA","4":"NA","5":"NA"},{"1":"Table 1. Annual Estimates of the Population for the United States, Regions, States, and Puerto Rico: April 1, 2010 to July 1, 2011 (NST-EST2011-01)","2":"NA","3":"NA","4":"NA","5":"NA"},{"1":"Source: U.S. Census Bureau, Population Division","2":"NA","3":"NA","4":"NA","5":"NA"},{"1":"Release Date: December 2011","2":"NA","3":"NA","4":"NA","5":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>testFrame &lt;- testFrame[-54:-58,]</code></pre>
+<pre class="r"><code>testFrame &lt;- testFrame[complete.cases(testFrame),]</code></pre>
+</div>
+<div id="renaming-rows-and-columns" class="section level2">
+<h2>RENAMING ROWS AND COLUMNS</h2>
+<pre class="r"><code>colnames(testFrame)</code></pre>
+<pre><code>## [1] &quot;table with row headers in column A and column headers in rows 3 through 4. (leading dots indicate sub-parts)&quot;
+## [2] &quot;...2&quot;                                                                                                        
+## [3] &quot;...3&quot;                                                                                                        
+## [4] &quot;...4&quot;                                                                                                        
+## [5] &quot;...5&quot;</code></pre>
+<pre class="r"><code>cnames &lt;- c(&quot;Region&quot;,&quot;Census&quot;,&quot;Estimate&quot;,&quot;April2010&quot;,&quot;April2011&quot;)
+
+colnames(testFrame) &lt;- cnames
+
+colnames(testFrame)</code></pre>
+<pre><code>## [1] &quot;Region&quot;    &quot;Census&quot;    &quot;Estimate&quot;  &quot;April2010&quot; &quot;April2011&quot;</code></pre>
+<pre class="r"><code>head(testFrame, 5)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Region"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Census"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Estimate"],"name":[3],"type":["chr"],"align":["left"]},{"label":["April2010"],"name":[4],"type":["chr"],"align":["left"]},{"label":["April2011"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":".Alabama","2":"4,779,736","3":"4,779,735","4":"4,785,401","5":"4802740"},{"1":".Alaska","2":"710,231","3":"710,231","4":"714,146","5":"722718"},{"1":".Arizona","2":"6,392,017","3":"6,392,013","4":"6,413,158","5":"6482505"},{"1":".Arkansas","2":"2,915,918","3":"2,915,921","4":"2,921,588","5":"2937979"},{"1":".California","2":"37,253,956","3":"37,253,956","4":"37,338,198","5":"37691912"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
-<div id="exploring-data-frames" class="section level2">
-<h2>EXPLORING DATA FRAMES</h2>
-<p>structure function</p>
-<pre class="r"><code>str(myFamily)</code></pre>
-<pre><code>## &#39;data.frame&#39;:    5 obs. of  4 variables:
-##  $ myFamilyNames  : chr  &quot;Dad&quot; &quot;Mom&quot; &quot;Sis&quot; &quot;Bro&quot; ...
-##  $ myFamilyAges   : num  43 42 12 8 5
-##  $ myFamilyGenders: chr  &quot;Male&quot; &quot;Female&quot; &quot;Female&quot; &quot;Male&quot; ...
-##  $ myFamilyWeights: num  188 136 83 61 44</code></pre>
-<p>summary function</p>
-<pre class="r"><code>summary(myFamily)</code></pre>
-<pre><code>##  myFamilyNames       myFamilyAges myFamilyGenders    myFamilyWeights
-##  Length:5           Min.   : 5    Length:5           Min.   : 44.0  
-##  Class :character   1st Qu.: 8    Class :character   1st Qu.: 61.0  
-##  Mode  :character   Median :12    Mode  :character   Median : 83.0  
-##                     Mean   :22                       Mean   :102.4  
-##                     3rd Qu.:42                       3rd Qu.:136.0  
-##                     Max.   :43                       Max.   :188.0</code></pre>
-<p>head and tail functions show limited results</p>
-<pre class="r"><code>head(myFamily, 3)</code></pre>
+<div id="cleaning-up-the-elements" class="section level2">
+<h2>CLEANING UP THE ELEMENTS</h2>
+<pre class="r"><code>testFrame$Region &lt;- gsub(&quot;\\.&quot;,&quot;&quot;,as.character(testFrame$Region))</code></pre>
+<pre class="r"><code>testFrame$Census &lt;- as.numeric(gsub(&quot;,&quot;,&quot;&quot;, testFrame$Census))
+
+testFrame$Estimate &lt;- as.numeric(gsub(&quot;,&quot;,&quot;&quot;, testFrame$Estimate))
+
+testFrame$April2010 &lt;- as.numeric(gsub(&quot;,&quot;,&quot;&quot;, testFrame$April2010))</code></pre>
+<pre class="r"><code>str(testFrame)</code></pre>
+<pre><code>## tibble [52 × 5] (S3: tbl_df/tbl/data.frame)
+##  $ Region   : chr [1:52] &quot;Alabama&quot; &quot;Alaska&quot; &quot;Arizona&quot; &quot;Arkansas&quot; ...
+##  $ Census   : num [1:52] 4779736 710231 6392017 2915918 37253956 ...
+##  $ Estimate : num [1:52] 4779735 710231 6392013 2915921 37253956 ...
+##  $ April2010: num [1:52] 4785401 714146 6413158 2921588 37338198 ...
+##  $ April2011: num [1:52] 4802740 722718 6482505 2937979 37691912 ...</code></pre>
+<pre class="r"><code>head(testFrame, 5)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["myFamilyNames"],"name":[1],"type":["chr"],"align":["left"]},{"label":["myFamilyAges"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["myFamilyGenders"],"name":[3],"type":["chr"],"align":["left"]},{"label":["myFamilyWeights"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Dad","2":"43","3":"Male","4":"188","_rn_":"1"},{"1":"Mom","2":"42","3":"Female","4":"136","_rn_":"2"},{"1":"Sis","2":"12","3":"Female","4":"83","_rn_":"3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-<pre class="r"><code>tail(myFamily, 3)</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["myFamilyNames"],"name":[1],"type":["chr"],"align":["left"]},{"label":["myFamilyAges"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["myFamilyGenders"],"name":[3],"type":["chr"],"align":["left"]},{"label":["myFamilyWeights"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Sis","2":"12","3":"Female","4":"83","_rn_":"3"},{"1":"Bro","2":"8","3":"Male","4":"61","_rn_":"4"},{"1":"Dog","2":"5","3":"Female","4":"44","_rn_":"5"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["Region"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Census"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Estimate"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["April2010"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["April2011"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"Alabama","2":"4779736","3":"4779735","4":"4785401","5":"4802740"},{"1":"Alaska","2":"710231","3":"710231","4":"714146","5":"722718"},{"1":"Arizona","2":"6392017","3":"6392013","4":"6413158","5":"6482505"},{"1":"Arkansas","2":"2915918","3":"2915921","4":"2921588","5":"2937979"},{"1":"California","2":"37253956","3":"37253956","4":"37338198","5":"37691912"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
-<div id="accessing-columns-in-a-data-frame" class="section level2">
-<h2>ACCESSING COLUMNS IN A DATA FRAME</h2>
-<p>To view on row of the data frame</p>
-<pre class="r"><code>myFamily$myFamilyAges</code></pre>
-<pre><code>## [1] 43 42 12  8  5</code></pre>
-<p>Adding a value to one of the original vectors does not change the
-data frame</p>
-<pre class="r"><code>myFamilyAges &lt;- c(myFamilyAges, 11)
-myFamilyAges</code></pre>
-<pre><code>## [1] 43 42 12  8  5 11</code></pre>
-<pre class="r"><code>myFamily$myFamilyAges</code></pre>
-<pre><code>## [1] 43 42 12  8  5</code></pre>
+<div id="sorting-and-subsetting-data-frames" class="section level2">
+<h2>SORTING AND SUBSETTING DATA FRAMES</h2>
+<pre class="r"><code>testFrame$Change &lt;- testFrame$April2011 - testFrame$April2010
+
+avgChange &lt;- mean(testFrame$Change)</code></pre>
+<pre class="r"><code>testFrame[testFrame$Change &gt; avgChange,]</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Region"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Census"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Estimate"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["April2010"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["April2011"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Change"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"Arizona","2":"6392017","3":"6392013","4":"6413158","5":"6482505","6":"69347"},{"1":"California","2":"37253956","3":"37253956","4":"37338198","5":"37691912","6":"353714"},{"1":"Colorado","2":"5029196","3":"5029196","4":"5047692","5":"5116796","6":"69104"},{"1":"Florida","2":"18801310","3":"18801311","4":"18838613","5":"19057542","6":"218929"},{"1":"Georgia","2":"9687653","3":"9687660","4":"9712157","5":"9815210","6":"103053"},{"1":"New York","2":"19378102","3":"19378104","4":"19395206","5":"19465197","6":"69991"},{"1":"North Carolina","2":"9535483","3":"9535475","4":"9560234","5":"9656401","6":"96167"},{"1":"Tennessee","2":"6346105","3":"6346110","4":"6357436","5":"6403353","6":"45917"},{"1":"Texas","2":"25145561","3":"25145561","4":"25253466","5":"25674681","6":"421215"},{"1":"Virginia","2":"8001024","3":"8001030","4":"8023953","5":"8096604","6":"72651"},{"1":"Washington","2":"6724540","3":"6724540","4":"6742950","5":"6830038","6":"87088"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>growingStates &lt;- testFrame[testFrame$Change &gt; avgChange, ]</code></pre>
+<pre class="r"><code>growingStates&lt;- growingStates[order(growingStates$Change),]</code></pre>
+<pre class="r"><code>head(growingStates,5)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Region"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Census"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Estimate"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["April2010"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["April2011"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Change"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"Tennessee","2":"6346105","3":"6346110","4":"6357436","5":"6403353","6":"45917"},{"1":"Colorado","2":"5029196","3":"5029196","4":"5047692","5":"5116796","6":"69104"},{"1":"Arizona","2":"6392017","3":"6392013","4":"6413158","5":"6482505","6":"69347"},{"1":"New York","2":"19378102","3":"19378104","4":"19395206","5":"19465197","6":"69991"},{"1":"Virginia","2":"8001024","3":"8001030","4":"8023953","5":"8096604","6":"72651"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>growingStates &lt;- growingStates[order(growingStates$Change, decreasing = TRUE),]
+head(growingStates, 5)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Region"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Census"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Estimate"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["April2010"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["April2011"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Change"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"Texas","2":"25145561","3":"25145561","4":"25253466","5":"25674681","6":"421215"},{"1":"California","2":"37253956","3":"37253956","4":"37338198","5":"37691912","6":"353714"},{"1":"Florida","2":"18801310","3":"18801311","4":"18838613","5":"19057542","6":"218929"},{"1":"Georgia","2":"9687653","3":"9687660","4":"9712157","5":"9815210","6":"103053"},{"1":"North Carolina","2":"9535483","3":"9535475","4":"9560234","5":"9656401","6":"96167"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="sorting-and-subsetting-data-frames-using-tidyverse" class="section level2">
+<h2>SORTING AND SUBSETTING DATA FRAMES USING TIDYVERSE</h2>
+<pre class="r"><code>library(&quot;tidyverse&quot;)</code></pre>
+<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.4     ✔ purrr     1.0.2
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre class="r"><code>testFrame &lt;- mutate(testFrame, Change = April2011 - April2010)
+
+avgChange &lt;- mean( pull(testFrame, Change))
+growingStates &lt;- filter(testFrame, Change &gt; avgChange)
+growingStates &lt;- arrange(growingStates, desc(Change))
+growingStates &lt;- slice(growingStates, 1:5)
+select(growingStates, Region, April2011, Change)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Region"],"name":[1],"type":["chr"],"align":["left"]},{"label":["April2011"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Change"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Texas","2":"25674681","3":"421215"},{"1":"California","2":"37691912","3":"353714"},{"1":"Florida","2":"19057542","3":"218929"},{"1":"Georgia","2":"9815210","3":"103053"},{"1":"North Carolina","2":"9656401","3":"96167"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>testFrame %&gt;% 
+  mutate(Change = (April2011 - April2010)) %&gt;% 
+  filter(Change &gt; mean(Change)) %&gt;%
+  arrange(desc(Change)) %&gt;%
+  slice(1:5) %&gt;%
+  select(Region, April2011, Change)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Region"],"name":[1],"type":["chr"],"align":["left"]},{"label":["April2011"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Change"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Texas","2":"25674681","3":"421215"},{"1":"California","2":"37691912","3":"353714"},{"1":"Florida","2":"19057542","3":"218929"},{"1":"Georgia","2":"9815210","3":"103053"},{"1":"North Carolina","2":"9656401","3":"96167"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>testFrame %&gt;% 
+  mutate(Change = (April2011 - April2010)) %&gt;% 
+  filter(Change &gt; mean(Change)) %&gt;%
+  arrange(desc(Change)) %&gt;%
+  slice(1:5) %&gt;%
+  select(Region, April2011, Change) -&gt; growingStates</code></pre>
+<p>myTest:</p>
+<pre class="r"><code>row_max_age &lt;- testFrame[which.max(testFrame$Change), ]
+row_max_age</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Region"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Census"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Estimate"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["April2010"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["April2011"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Change"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"Texas","2":"25145561","3":"25145561","4":"25253466","5":"25674681","6":"421215"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="case-study-reading-cleaning-and-exploring-a-survey-dataset" class="section level2">
+<h2>CASE STUDY: READING, CLEANING, AND EXPLORING A SURVEY DATASET</h2>
 <ul>
-<li>myFamily$myFamilyAges &lt;- c(myFamily$myFamilyAges, 11)
+<li>Case Key Points
 <ul>
-<li>if you try to add an element to one row of an existing data
-frame</li>
-<li>It will cause an error and the myFamily data frame will remain
-changed</li>
-<li>Data frames must remain rectangular</li>
+<li>Read a .csv file that has survey data</li>
+<li>Clean the dataset (survey) by removing NSa</li>
+<li>Explore likelyhood to recommend (LTR), calculating the mean of LTR
+across different groups within the survey</li>
 </ul></li>
 </ul>
-</div>
-<div id="case-study-calculating-nps-using-a-data-frame-net-promoter-score" class="section level2">
-<h2>CASE STUDY: calculating NPS using a data frame (net promoter
-score)</h2>
-<pre class="r"><code>#--- Six surveys
-ltr &lt;- c(9,9,7,6,8,7)
-TypeOfTravel &lt;- c(&#39;Business Travel&#39;,&#39;Business Travel&#39;,&#39;Business Travel&#39;,&#39; Mileage&#39;,
-                   &#39;Personal Travel&#39;,&#39;Personal Travel&#39;)
-survey &lt;- data.frame(ltr, TypeOfTravel)
-
-#--- look at the newly created data frame
-str(survey)</code></pre>
-<pre><code>## &#39;data.frame&#39;:    6 obs. of  2 variables:
-##  $ ltr         : num  9 9 7 6 8 7
-##  $ TypeOfTravel: chr  &quot;Business Travel&quot; &quot;Business Travel&quot; &quot;Business Travel&quot; &quot; Mileage&quot; ...</code></pre>
-<pre class="r"><code>#--- Calculate the number of promoters and detractors
-numP &lt;- sum(survey$ltr &gt; 8)
-numD &lt;- sum(survey$ltr &lt; 7 )
-
-#--- Now calculate NPS
-total &lt;- nrow(survey)
-nps &lt;- (numP/total - numD/total) * 100
-nps</code></pre>
-<pre><code>## [1] 16.66667</code></pre>
-<pre class="r"><code>survey</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["ltr"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["TypeOfTravel"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"9","2":"Business Travel"},{"1":"9","2":"Business Travel"},{"1":"7","2":"Business Travel"},{"1":"6","2":"Mileage"},{"1":"8","2":"Personal Travel"},{"1":"7","2":"Personal Travel"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-<pre class="r"><code>#--- do the same analysis, but for business travel tickets
-busTravelDF &lt;- survey[survey$TypeOfTravel == &quot;Business Travel&quot;,]
-
-#--- Calculate number of promoters and detractors
-numP &lt;- sum(busTravelDF$ltr &gt; 8)
-numD &lt;- sum(busTravelDF$ltr &lt; 7 )
-
-#--- Calculate Business Travel NPS
-total &lt;- nrow(busTravelDF)
-bus.nps &lt;- (numP/total - numD/total) * 100
-bus.nps</code></pre>
-<pre><code>## [1] 66.66667</code></pre>
-<pre class="r"><code>str(survey$TypeOfTravel) #--- expected output is different in the book</code></pre>
-<pre><code>##  chr [1:6] &quot;Business Travel&quot; &quot;Business Travel&quot; &quot;Business Travel&quot; &quot; Mileage&quot; ...</code></pre>
-<pre class="r"><code>levels(survey$TypeOfTravel) #--- expected output is different in the book</code></pre>
-<pre><code>## NULL</code></pre>
-<pre class="r"><code>nps</code></pre>
-<pre><code>## [1] 16.66667</code></pre>
-<pre class="r"><code>bus.nps</code></pre>
-<pre><code>## [1] 66.66667</code></pre>
-</div>
-<div id="chapter-challenges" class="section level2">
-<h2>CHAPTER CHALLENGES</h2>
-<ol style="list-style-type: decimal">
-<li>Use c() to create new variable myFoods containing five values.</li>
-</ol>
-<pre class="r"><code>myFoods &lt;- c(&#39;Pizza&#39;,&#39;Pizza&#39;,&#39;Steak&#39;,&#39;Cereal&#39;,&#39;Steak&#39;)
-
-str(myFoods)</code></pre>
-<pre><code>##  chr [1:5] &quot;Pizza&quot; &quot;Pizza&quot; &quot;Steak&quot; &quot;Cereal&quot; &quot;Steak&quot;</code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li>add myFoods to the myFamily data frame</li>
-</ol>
-<pre class="r"><code>myFamily$myFoods &lt;- myFoods</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>Run the summary() function on the new myFamily</li>
-</ol>
-<pre class="r"><code>summary(myFamily)</code></pre>
-<pre><code>##  myFamilyNames       myFamilyAges myFamilyGenders    myFamilyWeights
-##  Length:5           Min.   : 5    Length:5           Min.   : 44.0  
-##  Class :character   1st Qu.: 8    Class :character   1st Qu.: 61.0  
-##  Mode  :character   Median :12    Mode  :character   Median : 83.0  
-##                     Mean   :22                       Mean   :102.4  
-##                     3rd Qu.:42                       3rd Qu.:136.0  
-##                     Max.   :43                       Max.   :188.0  
-##    myFoods         
-##  Length:5          
-##  Class :character  
-##  Mode  :character  
-##                    
-##                    
-## </code></pre>
-<pre class="r"><code>#--- myFamily$myFoods is data type or mode character</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li>create an expression that shows a list of TRUE and FALSE values.
-show TRUE when myAge is less than 40 assign results to myIndex</li>
-</ol>
-<pre class="r"><code>myIndex &lt;- myFamily$myFamilyAges &lt; 40
-myIndex</code></pre>
-<pre><code>## [1] FALSE FALSE  TRUE  TRUE  TRUE</code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li>use myIndex to show the favorite food of each kid</li>
-</ol>
-<pre class="r"><code>myFamily$myFoods[myIndex]</code></pre>
-<pre><code>## [1] &quot;Steak&quot;  &quot;Cereal&quot; &quot;Steak&quot;</code></pre>
-<ol start="6" style="list-style-type: decimal">
-<li>invert the selection using ! to show favorite foods of adults</li>
-</ol>
-<pre class="r"><code>myFamily$myFoods[!myIndex]</code></pre>
-<pre><code>## [1] &quot;Pizza&quot; &quot;Pizza&quot;</code></pre>
+<pre class="r"><code># USe RStudio&#39;s data import:
+#. File -&gt; Import Dataset -&gt; From Text (readr)
+#. the following code was created
+library(readr)
+#--- this dataset is unavailable.  smallSurvey &lt;- read_csv(&quot;smallSurvey.csv&quot;)</code></pre>
 </div>
 
 
