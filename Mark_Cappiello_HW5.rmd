@@ -2,7 +2,7 @@
 ##### Copyright Jeffrey Stanton, Jeffrey Saltz, and Jasmina Tacheva
 
 ```{r}
-# Enter your name here: 
+# Enter your name here: Mark Cappielo
 ```
 
 
@@ -12,7 +12,7 @@
 ```{r}
 # 1. I did this homework by myself, with help from the book and the professor.
 # 2. I did this homework with help from the book and the professor and these Internet sources:
-# 3. I did this homework with help from <Name of another student> but did not cut and paste any code.
+
 ```
 
 **This module:** **Data visualization** is important because many people can make sense of data more easily when it is presented in graphic form. As a data scientist, you will have to present complex data to decision makers in a form that makes the data interpretable for them. From your experience with Excel and other tools, you know that there are a variety of **common data visualizations** (e.g., pie charts). How many of them can you name? <br>
@@ -29,14 +29,15 @@ Your new dataframe, tb, contains a so-called **multivariate time series**: a seq
 
 
 ```{r}
-
+library(tidyverse)
+tb <- read_csv(file = 'https://intro-datascience.s3.us-east-2.amazonaws.com/who.csv',show_col_types = FALSE)
 ```
 
 B.	How often were these measurements taken (in other words, at what frequency were the variables measured)? Put your answer in a comment. 
 
 
 ```{r}
-
+#--- Measurements appear to be taken annually
 ```
 
 ## Step 2: Clean-up the NAs and create a subset
@@ -47,14 +48,15 @@ Hint: use *is.na()* -- well use *! is.na()*
 
 
 ```{r}
-
+#--- Cleaning up the iso2 attribute
+tb <- tb[!is.na(tb$iso2),]
 ```
 
 B. Create a subset of **tb** containing **only the records for Canada ("CA" in the iso2 variable)**. Save it in a new dataframe called **tbCan**. Make sure this new df has **29 observations and 23 variables**.
 
 
 ```{r}
-
+tbCan <- tb[tb$iso2 == "CA",]
 ```
 
 C. A simple method for dealing with small amounts of **missing data** in a numeric variable is to **substitute the mean of the variable in place of each missing datum**. <br>
@@ -63,6 +65,8 @@ This expression locates (and reports to the console) all the missing data elemen
 
 ```{r}
 tbCan$new_sp_m04[is.na(tbCan$new_sp_m04)]
+#--- tbCan$new_sp_m04
+#--- is.na(tbCan$new_sp_m04)
 ```
 
 
@@ -73,8 +77,16 @@ tbCan$new_sp_m04[is.na(tbCan$new_sp_m04)]
 
 D.	Write a comment describing how that statement works.
 
-
+*
 ```{r}
+#--- Starting from the inside and working outward
+#--- (tbCan$new_sp_m04) finds all of the values in data frame tbCan and column new_sp_m04
+#---  it returns these values as a vector
+#--- Using the is.na() function on (tbCan$new_sp_m04) returns only TRUE or FALSE for these values. 
+#---  "NA" will return a TRUE. A value other than NA will return a FALSE
+#--- [is.na(tbCan$new_sp_m04)] is an index of this vector of all TRUEs, only for values which are equal to NA 
+#--- Based on the index created by the previous line, the NA values will be selected from 
+#--- the vector tbCan$new_sp_m04  
 
 ```
 
@@ -82,7 +94,16 @@ E.	Write 4 more statements to check if there is missing data for the number of p
 
 
 ```{r}
+#--- male children 0-14 years old
+tbCan$new_sp_m014[is.na(tbCan$new_sp_m014)]
+#--- female children 0-14 years old 
+tbCan$new_sp_f014[is.na(tbCan$new_sp_f014)]
+#--- male citizens 65 years of age and older
+tbCan$new_sp_m65[is.na(tbCan$new_sp_m65)]
+#--- female citizens 65 years of age and older
+tbCan$new_sp_f65[is.na(tbCan$new_sp_f65)]
 
+#--- running each line of code returns numeric(0). No values were NA or missing for any of these observations
 ```
 
 There is an R package called **imputeTS** specifically designed to repair missing values in time series data. We will use this instead of mean substitution.  <br>
@@ -92,13 +113,26 @@ F.	Install the **imputeTS** package (if needed) and use **na_interpolation( )** 
 
 
 ```{r}
-
+#--- install.packages("imputeTS")
+library(imputeTS)
+tbCan$new_sp_m04 <- na_interpolation(tbCan$new_sp_m04)
+tbCan
 ```
 
 G.	Rerun the code from C and E above to check that all missing data have been fixed. 
 
 
 ```{r}
+tbCan$new_sp_m04[is.na(tbCan$new_sp_m04)]
+
+#--- male children 0-14 years old
+tbCan$new_sp_m014[is.na(tbCan$new_sp_m014)]
+#--- female children 0-14 years old 
+tbCan$new_sp_f014[is.na(tbCan$new_sp_f014)]
+#--- male citizens 65 years of age and older
+tbCan$new_sp_m65[is.na(tbCan$new_sp_m65)]
+#--- female citizens 65 years of age and older
+tbCan$new_sp_f65[is.na(tbCan$new_sp_f65)]
 
 ```
 
