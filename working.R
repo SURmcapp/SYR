@@ -71,3 +71,45 @@ ggplot(myCars$mpg, aes(x = myCars$class, y = myCars$disp)) +
   labs(x = "Class of Car", y = "Displacement") +
   ggtitle("Displacement of Cars by Class")
 str(myCars)
+
+
+
+library(tidyverse)
+
+#the data
+myPlot <- ggplot(mpg)
+
+#the asthetic
+myPlot <- myPlot + aes(x=displ)
+
+#the geometry
+myPlot <- myPlot + 
+  geom_histogram(bins = 12,fill = "cyan", col = "black")
+
+#invoke the plot to draw
+myPlot
+
+#boxplot
+myPlot.box <- ggplot(mpg) + aes(x=class,y=displ) + geom_boxplot()
+myPlot.box
+
+#scatter 
+myPlot.scatter <- ggplot(mpg) + aes(x=displ,y=hwy) + geom_point()
+myPlot.scatter
+
+#using tydiverse pipes and adding color
+mpg %>% ggplot() + aes(x=displ,y=hwy) + geom_point(aes(color = cty))
+
+#adding more attributes
+mpg %>% 
+  mutate((cyl=as.factor(cyl)) %>%
+           ggplot() + aes(x=displ,y=hwy) + 
+           geom_point(aes(color = cty,
+                          shape = cyl, size = hwy)) + 
+           scale_color_gradient(low = "blue",
+                                high = "orange")
+         
+         mtc <- mtcars
+         car.names <- mtc[,0]  
+         car.names
+         mtc
