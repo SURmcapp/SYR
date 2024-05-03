@@ -61,3 +61,13 @@ sampluF <- unique(sample(urlComps$funding_rounds, 3, replace = FALSE))
 sampluT <- unique(sample(urlComps$funding_rounds, 3, replace = TRUE))
 
 urlComps[[1]]
+
+install.packages("ggplot2")
+library(ggplot2)
+
+myCars <- c(myCars$disp,myCars$class)
+ggplot(myCars$mpg, aes(x = myCars$class, y = myCars$disp)) +
+  geom_boxplot() +
+  labs(x = "Class of Car", y = "Displacement") +
+  ggtitle("Displacement of Cars by Class")
+str(myCars)
