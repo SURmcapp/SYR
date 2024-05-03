@@ -3,9 +3,11 @@ title: "Data Science for Business With R - CH04"
 output: html_notebook
 ---
 
+create a function to sort a df's columns
+create
 
 ```{r}
-plot(cars)
+
 ```
 
 Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
