@@ -112,3 +112,14 @@ mtc <- mtcars
 car.names <- mtc[,0]  
 car.names <- rownames(mtc)
 car.names
+
+#line plot
+yrs <- c(2000:2024)
+cases <- sample(1:10, 25, replace = TRUE)
+myDF <- data.frame(yrs,cases)
+myDF
+
+ggplot(myDF, aes(x = yrs, y = cases)) +
+  geom_line() +
+  geom_point() +
+  labs(x = "Year", y = "Cases", title = "Cases Over Years")

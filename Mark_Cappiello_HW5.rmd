@@ -142,6 +142,16 @@ H.	Create a histogram for **new_sp_m014**. Be sure to add a title and briefly de
 
 
 ```{r}
+library(tidyverse)
+myPlot <- ggplot(tbCan)
+
+#histogram new_sp_m04
+#myPlot.new_sp_m04 <- myPlot + aes(x=new_sp_m04) + geom_histogram(bins = 12,fill = "yellow", col = "black")
+#myPlot.new_sp_m04
+
+#histogram new_sp_m014
+myPlot.new_sp_m014 <- myPlot + aes(x=new_sp_m014) + geom_histogram(bins = 12,fill = "cyan", col = "black")
+myPlot.new_sp_m014
 
 ```
 
@@ -150,7 +160,17 @@ Which parameter do you need to adjust to make the other histograms look right?
 
 
 ```{r}
+#histogram new_sp_f014
+myPlot.new_sp_f014 <- myPlot + aes(x=new_sp_f014) + geom_histogram(bins = 12,fill = "magenta", col = "black")
+myPlot.new_sp_f014
 
+#histogram new_sp_m65
+myPlot.new_sp_m65 <- myPlot + aes(x=new_sp_m65) + geom_histogram(bins = 12,fill = "green1", col = "black")
+myPlot.new_sp_m65
+
+#histogram new_sp_f65
+myPlot.new_sp_f65 <- myPlot + aes(x=new_sp_f65) + geom_histogram(bins = 12,fill = "purple1", col = "black")
+myPlot.new_sp_f65
 ```
 
 ## Step 4: Explore how the data changes over time
@@ -158,21 +178,42 @@ J.	These data were collected in a period of several decades (1980-2013). You can
 
 
 ```{r}
-
+ggplot(tbCan, aes(x = year, y = new_sp_m014)) +
+  geom_line(color = 'blue') +
+  geom_point(color = 'blue') +
+  labs(x = "Year", y = "Positive TB Tests", title = "Positive TB Tests Over Years")
+```
 ```
 
 K.	Next, create similar graphs for each of the other three variables. Change the **color** of the line plots (any color you want).
 
 
 ```{r}
-
+ggplot(tbCan, aes(x = year, y = new_sp_f014)) +
+  geom_line(color = 'red') +
+  geom_point(color = 'red') +
+  labs(x = "Year", y = "Positive TB Tests", title = "Positive TB Tests Over Years")
+  
+ggplot(tbCan, aes(x = year, y = new_sp_m65)) +
+  geom_line(color = 'blueviolet') +
+  geom_point(color = 'blueviolet') +
+  labs(x = "Year", y = "Positive TB Tests", title = "Positive TB Tests Over Years")
+  
+ggplot(tbCan, aes(x = year, y = new_sp_f65)) +
+  geom_line(color = 'maroon') +
+  geom_point(color = 'maroon') +
+  labs(x = "Year", y = "Positive TB Tests", title = "Positive TB Tests Over Years")
+  
 ```
 
 L.	Using vector math, create a new variable by combining the numbers from **new_sp_m014** and **new_sp_f014**. Save the resulting vector as a new variable in the **tbCan** df called **new_sp_combined014**. This new variable represents the number of positive pulmonary smear tests for male AND female children between the ages of 0 and 14 years of age. Do the same for SP **tests among citizens 65 years of age and older** and save the resulting vector in the tbCan variable called **new_sp_combined65**.
 
 
 ```{r}
-
+tbCan$new_sp_combined014 <- c(tbCan$new_sp_m014 + tbCan$new_sp_f014)
+tbCan$new_sp_combined014
+tbCan$new_sp_combined65 <- c(tbCan$new_sp_m65 + tbCan$new_sp_f65)
+tbCan$new_sp_combined65
 ```
 
 M.	Finally, create a **scatter plot**, showing **new_sp_combined014** on the x axis, **new_sp_combined65** on the y axis, and having the **color and size** of the point represent **year**.
