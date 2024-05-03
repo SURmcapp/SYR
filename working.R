@@ -102,14 +102,13 @@ mpg %>% ggplot() + aes(x=displ,y=hwy) + geom_point(aes(color = cty))
 
 #adding more attributes
 mpg %>% 
-  mutate((cyl=as.factor(cyl)) %>%
-           ggplot() + aes(x=displ,y=hwy) + 
-           geom_point(aes(color = cty,
-                          shape = cyl, size = hwy)) + 
-           scale_color_gradient(low = "blue",
-                                high = "orange")
+  mutate(cyl=as.factor(cyl)) %>%
+  ggplot() + aes(x=displ,y=hwy) + 
+  geom_point(aes(color = cty,
+  shape = cyl, size = hwy)) + 
+  scale_color_gradient(low = "blue", high = "orange")
          
-         mtc <- mtcars
-         car.names <- mtc[,0]  
-         car.names
-         mtc
+mtc <- mtcars
+car.names <- mtc[,0]  
+car.names <- rownames(mtc)
+car.names
