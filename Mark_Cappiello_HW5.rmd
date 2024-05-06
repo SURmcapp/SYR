@@ -220,6 +220,12 @@ M.	Finally, create a **scatter plot**, showing **new_sp_combined014** on the x a
 
 
 ```{r}
+ggplot(tbCan, aes(x = year, y = new_sp_f65)) +
+  geom_line(color = 'maroon') +
+  geom_point(color = 'maroon') +
+  geom_text(aes(label = year), angle = 90, size = 3, hjust = 1.25)
+  labs(x = "Year", y = "Positive TB Tests", title = "Positive TB Tests Over Years")
+
 
 ```
 

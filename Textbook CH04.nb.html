@@ -1753,23 +1753,171 @@ CH04</h1>
 
 
 <!-- rnb-text-begin -->
-<p>create a function to sort a df’s columns create</p>
+<p>create a function to sort a df’s columns</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIy0tLSBhbHBoYWJldGljYWxseSBieSBjb2x1bW4gbmFtZVxuXG5jb2xOYW1lU29ydCA8LSBmdW5jdGlvbihpbnB1dERGKSB7XG4gIFxufVxuYGBgIn0= -->
+<pre class="r"><code>#--- alphabetically by column name
+
+colNameSort &lt;- function(inputDF) {
+  
+}</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Add a new chunk by clicking the <em>Insert Chunk</em> button on the
-toolbar or by pressing <em>Cmd+Option+I</em>.</p>
-<p>When you save the notebook, an HTML file containing the code and
-output will be saved alongside it (click the <em>Preview</em> button or
-press <em>Cmd+Shift+K</em> to preview the HTML file).</p>
-<p>The preview shows you a rendered HTML copy of the contents of the
-editor. Consequently, unlike <em>Knit</em>, <em>Preview</em> does not
-run any R code chunks. Instead, the output of the chunk when it was last
-run in the editor is displayed.</p>
+<p>Test the function - you must run it once to make RStudio aware of the
+function</p>
+<p>Highlight all lines including the curly brackets, the run all
+selected lines</p>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29sTmFtZVNvcnQobXRjYXJzKVxuYGBgIn0= -->
+<pre class="r"><code>colNameSort(mtcars)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTlVMTFxuIn0= -->
+<pre><code>NULL</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Finish creating the function</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIy0tLSBhbHBoYWJldGljYWxseSBieSBjb2x1bW4gbmFtZVxuXG5jb2xOYW1lU29ydCA8LSBmdW5jdGlvbihpbnB1dERGKSB7XG4gIFxuICBuYW1lTGlzdCA8LSBjb2xuYW1lcyhpbnB1dERGKSAjIFdoYXQgYXJlIHRoZSBuYW1lcz9cbiAgY2F0KG5hbWVMaXN0KVxuICBcbn1cbmBgYCJ9 -->
+<pre class="r"><code>#--- alphabetically by column name
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiRGF0YSBTY2llbmNlIGZvciBCdXNpbmVzcyBXaXRoIFIgLSBDSDA0IgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgpjcmVhdGUgYSBmdW5jdGlvbiB0byBzb3J0IGEgZGYncyBjb2x1bW5zCmNyZWF0ZQoKYGBge3J9CgpgYGAKCkFkZCBhIG5ldyBjaHVuayBieSBjbGlja2luZyB0aGUgKkluc2VydCBDaHVuayogYnV0dG9uIG9uIHRoZSB0b29sYmFyIG9yIGJ5IHByZXNzaW5nICpDbWQrT3B0aW9uK0kqLgoKV2hlbiB5b3Ugc2F2ZSB0aGUgbm90ZWJvb2ssIGFuIEhUTUwgZmlsZSBjb250YWluaW5nIHRoZSBjb2RlIGFuZCBvdXRwdXQgd2lsbCBiZSBzYXZlZCBhbG9uZ3NpZGUgaXQgKGNsaWNrIHRoZSAqUHJldmlldyogYnV0dG9uIG9yIHByZXNzICpDbWQrU2hpZnQrSyogdG8gcHJldmlldyB0aGUgSFRNTCBmaWxlKS4gCgpUaGUgcHJldmlldyBzaG93cyB5b3UgYSByZW5kZXJlZCBIVE1MIGNvcHkgb2YgdGhlIGNvbnRlbnRzIG9mIHRoZSBlZGl0b3IuIENvbnNlcXVlbnRseSwgdW5saWtlICpLbml0KiwgKlByZXZpZXcqIGRvZXMgbm90IHJ1biBhbnkgUiBjb2RlIGNodW5rcy4gSW5zdGVhZCwgdGhlIG91dHB1dCBvZiB0aGUgY2h1bmsgd2hlbiBpdCB3YXMgbGFzdCBydW4gaW4gdGhlIGVkaXRvciBpcyBkaXNwbGF5ZWQuCgo=</div>
+colNameSort &lt;- function(inputDF) {
+  
+  nameList &lt;- colnames(inputDF) # What are the names?
+  cat(nameList)
+  
+}</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Test the function again</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29sTmFtZVNvcnQobXRjYXJzKVxuYGBgIn0= -->
+<pre class="r"><code>colNameSort(mtcars)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoibXBnIGN5bCBkaXNwIGhwIGRyYXQgd3QgcXNlYyB2cyBhbSBnZWFyIGNhcmJcbiJ9 -->
+<pre><code>mpg cyl disp hp drat wt qsec vs am gear carb</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>add the sort() function to out new function</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29sTmFtZVNvcnQgPC0gZnVuY3Rpb24oaW5wdXRERikge1xuICBcbiAgbmFtZUxpc3QgPC0gY29sbmFtZXMoaW5wdXRERikgIyBXaGF0IGFyZSB0aGUgbmFtZXM/XG4gIG5hbWVMaXN0IDwtIHNvcnQobmFtZUxpc3QpXG4gIGNhdChuYW1lTGlzdClcbiAgXG59XG5gYGAifQ== -->
+<pre class="r"><code>colNameSort &lt;- function(inputDF) {
+  
+  nameList &lt;- colnames(inputDF) # What are the names?
+  nameList &lt;- sort(nameList)
+  cat(nameList)
+  
+}</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Test the function again</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29sTmFtZVNvcnQobXRjYXJzKVxuYGBgIn0= -->
+<pre class="r"><code>colNameSort(mtcars)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYW0gY2FyYiBjeWwgZGlzcCBkcmF0IGdlYXIgaHAgbXBnIHFzZWMgdnMgd3RcbiJ9 -->
+<pre><code>am carb cyl disp drat gear hp mpg qsec vs wt</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>add to function and test output in the for of a data frame</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29sTmFtZVNvcnQobXRjYXJzKVxuXG5gYGAifQ== -->
+<pre class="r"><code>colNameSort(mtcars)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYW0gY2FyYiBjeWwgZGlzcCBkcmF0IGdlYXIgaHAgbXBnIHFzZWMgdnMgd3RcbiJ9 -->
+<pre><code>am carb cyl disp drat gear hp mpg qsec vs wt</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MzIsIm5jb2wiOjExLCJzdW1tYXJ5IjpbXX0sInJkZiI6Ikg0c0lBQUFBQUFBQUE3MVhUV3diUlJUZTJJNFQvOFIxU0NLMWwzWVBIQXJDanY5U1hLQjR3RTRJVlNyU3BDUlJHMFVhMjV0NDZXYkhtVjA3VFZxa1hIcXVPSUk0SUpVajZnRXVPVVpGNHRSS2NPb050UmN1RkNrU0FnRVNnZDJkOXpieEJKTkFFU3RaMzd4djN0KzhmVzlzejFRVzh0R0ZxS0lvUVNVVURDckJYbWVwOUw1N1pTSlZWSlJRd0JGNmxKQVNjZkdHb3pUa0xHTE9KK0Y4MU5LdTRqMHkvdC9QcytiUnpmNG9WS0FPSkNrRVJGbVBTSEY4ZlVWQ3lRL3A3NEt5bmhSWGppZnpoK0xKK1hYVE93bW9kdTRyV0llVGtsNDNPMWxPZHRHWDlZNkxzajhaLzYzOUVma3JXSWM2OElqWEFKdkNnTFMzQkJxU1hKMWJkaDlDUDNTZmowajl4N3o3K0xqMjJnUG5lWGdJM3dmN1d6c0NiNEk4KzVuWW4za3E4UEpYd3Y5U1dLRDFXT2haa0Y4TDVBMlFaOEhmMHBDSVB3LzJyVjNJRi9Mblg0TWU2YXpEaWJ5d1EwdzhFSG4wMzMwVXZkRDhsRVNBRHc5dlBubnIzakNKM1BNV1pPRDI2ZTNMMzk4bUp4YlAvblQvenVJaDdML2pMUTVoWDlOMXZPYlBTY1FOYy9jUlNUck9UbS9Qa0tGdGIwR1NiclROSjJRQTZ1ekhoM3dHd0E3elJQdEJzRTk0YWJ6Zys0bTc0dG1mU1J6MGtpSVBwY3Y5Y09SOEh6SG54N1kvcnI5L2FqOThUQVI5QmV0d2JVdndpUE9rVTlZZUM3d0t2UG1Kd0hmQTMveU93Q1VKbDdmK0duV3dmdy84R3FBL0Rmc1h3ZTgweEZzQXJPNTBJdWFCK2FIOUhPd3ZnbDFUT29lOUMrY1Qrd3JXWVF6aUlwNkR1UmhiRnZPViswTDBZZTZVNk0rWG9FK0xzSS82ZWVqWExNZ1oyTTlPQ1RrTjh2T3dqNWdDSGh5UTExR0dlMllNempFSythR2ZGeUVQalBzcXhIa0Y5TkRQS09yQk9kSjRYckh2MXlIVEVuT1Q3Ulh6bnZ0WXpIY2U1aGo1UWxITTNTamNEd1dzMjNkUUw4Z2pCM0lXNndCNTVFQS8rNXM3c0RkSjloc3hwOW5yN2tYemxPUnZDUDg1dUhmeTRLY1FjQytXTDBubVc1YytzMTlYdEk5M3hzM0FlVE1ncDVUT09xYWdiam1SRjlaQmtaNXV2Mk82eWYvVjc3Qm45WGRVdm4rakwvb2hCUGRvbnlCSkFPNzFDTnk3TVhnL01laURPTzREai9lM3J3ZVk5SzdwU2Y5ZVQxendHb3lNUUp5UnoxT0p1ZEFwTWtMRmZkNGozay9wVjZGZitoMitkNEtRUnh6dS85aW02S2NFZmkvYzkvcWx0QWZuNlBIQ255bjlNbGE2OWNNSERSSUJQMkd3eC96REloL3BCM2V2U1ZjMTk2czVxYmcvdWdVWm9LdXdDdFVvcjhJNldOc3drSzdyVnROZmMycmpla1dqSEowMFVDTzQybHhCaFRWTHE2RkMyOExWdWkybEZlRnNQWDB3TlJVM0x0SE5PbFZuRmdwQURQaUVPazh4VExSQ2JhdGxxaTluTThBa0poazNOVnN0cUJXdXR6VmdCNEdkYlRKdTB5cHI0VUg2NXFpaFU5UDIvYlVzVytOcS9sekd6MFBqTlRWWHlGU0E2QmRFUHRNcEZ5V0RZcWFNUGoyaU1KYVpIVC9FVEFFVDIyZlE3TGt5cmV1R1FXdnFoS0ZwOWpwamRkZ1ptdExOR2pOTXRjeE1XemMxMDZiNHZnYkxEYjVoR2M0SjNsNXRhbHozTi9vbmRHcXIyVndSQTA0eTA2bG1XVy9yK0pvU1Y5Z0dzeDJPY2ViRXhiSWZZRTBra3hWV1g5SFVjb01haG1hdWFOZ0tzVGN1bGRXTHRLMFp1b2xuTGROVnlwbDYxUStkbkhiVGRzK2xjNjJxY3p4V3hFdHhJWnM2ajZHbkdiZHFEVTA5bnkya2NrREdwNWpkc3RUeEZtZE5UQ2N4d1hoZG5YWmVvOGFwaWpXTlQyaWNVNjZyRmQxayswMWtPVHEycnI3Sk9KcEg1NWpSWm1xMmtCdVhoNlptVUFzN0U4bG9uZG8wdmN5ZHBuV2tQY21ranpWdG5abU9VY0Q5ZXh1V2pIdTRSQ1JicHR2KzlWU3QwVEt2cDhieTBuNndhYTY0UVQxS2ZBWUExUVBybUVnajhBZVloOEU4N0x3ZXAwWHdQQWF0YXRnU3dicld4Z0k2VStnTllicko5ZjFoY0ZncmJiUDk5b282YlllTWQzUmw3MDkrK3J6MzlBOEFBQT09In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["am"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["carb"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["drat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["gear"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["mpg"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["qsec"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["vs"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["wt"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"4","3":"6","4":"160.0","5":"3.90","6":"4","7":"110","8":"21.0","9":"16.46","10":"0","11":"2.620","_rn_":"Mazda RX4"},{"1":"1","2":"4","3":"6","4":"160.0","5":"3.90","6":"4","7":"110","8":"21.0","9":"17.02","10":"0","11":"2.875","_rn_":"Mazda RX4 Wag"},{"1":"1","2":"1","3":"4","4":"108.0","5":"3.85","6":"4","7":"93","8":"22.8","9":"18.61","10":"1","11":"2.320","_rn_":"Datsun 710"},{"1":"0","2":"1","3":"6","4":"258.0","5":"3.08","6":"3","7":"110","8":"21.4","9":"19.44","10":"1","11":"3.215","_rn_":"Hornet 4 Drive"},{"1":"0","2":"2","3":"8","4":"360.0","5":"3.15","6":"3","7":"175","8":"18.7","9":"17.02","10":"0","11":"3.440","_rn_":"Hornet Sportabout"},{"1":"0","2":"1","3":"6","4":"225.0","5":"2.76","6":"3","7":"105","8":"18.1","9":"20.22","10":"1","11":"3.460","_rn_":"Valiant"},{"1":"0","2":"4","3":"8","4":"360.0","5":"3.21","6":"3","7":"245","8":"14.3","9":"15.84","10":"0","11":"3.570","_rn_":"Duster 360"},{"1":"0","2":"2","3":"4","4":"146.7","5":"3.69","6":"4","7":"62","8":"24.4","9":"20.00","10":"1","11":"3.190","_rn_":"Merc 240D"},{"1":"0","2":"2","3":"4","4":"140.8","5":"3.92","6":"4","7":"95","8":"22.8","9":"22.90","10":"1","11":"3.150","_rn_":"Merc 230"},{"1":"0","2":"4","3":"6","4":"167.6","5":"3.92","6":"4","7":"123","8":"19.2","9":"18.30","10":"1","11":"3.440","_rn_":"Merc 280"},{"1":"0","2":"4","3":"6","4":"167.6","5":"3.92","6":"4","7":"123","8":"17.8","9":"18.90","10":"1","11":"3.440","_rn_":"Merc 280C"},{"1":"0","2":"3","3":"8","4":"275.8","5":"3.07","6":"3","7":"180","8":"16.4","9":"17.40","10":"0","11":"4.070","_rn_":"Merc 450SE"},{"1":"0","2":"3","3":"8","4":"275.8","5":"3.07","6":"3","7":"180","8":"17.3","9":"17.60","10":"0","11":"3.730","_rn_":"Merc 450SL"},{"1":"0","2":"3","3":"8","4":"275.8","5":"3.07","6":"3","7":"180","8":"15.2","9":"18.00","10":"0","11":"3.780","_rn_":"Merc 450SLC"},{"1":"0","2":"4","3":"8","4":"472.0","5":"2.93","6":"3","7":"205","8":"10.4","9":"17.98","10":"0","11":"5.250","_rn_":"Cadillac Fleetwood"},{"1":"0","2":"4","3":"8","4":"460.0","5":"3.00","6":"3","7":"215","8":"10.4","9":"17.82","10":"0","11":"5.424","_rn_":"Lincoln Continental"},{"1":"0","2":"4","3":"8","4":"440.0","5":"3.23","6":"3","7":"230","8":"14.7","9":"17.42","10":"0","11":"5.345","_rn_":"Chrysler Imperial"},{"1":"1","2":"1","3":"4","4":"78.7","5":"4.08","6":"4","7":"66","8":"32.4","9":"19.47","10":"1","11":"2.200","_rn_":"Fiat 128"},{"1":"1","2":"2","3":"4","4":"75.7","5":"4.93","6":"4","7":"52","8":"30.4","9":"18.52","10":"1","11":"1.615","_rn_":"Honda Civic"},{"1":"1","2":"1","3":"4","4":"71.1","5":"4.22","6":"4","7":"65","8":"33.9","9":"19.90","10":"1","11":"1.835","_rn_":"Toyota Corolla"},{"1":"0","2":"1","3":"4","4":"120.1","5":"3.70","6":"3","7":"97","8":"21.5","9":"20.01","10":"1","11":"2.465","_rn_":"Toyota Corona"},{"1":"0","2":"2","3":"8","4":"318.0","5":"2.76","6":"3","7":"150","8":"15.5","9":"16.87","10":"0","11":"3.520","_rn_":"Dodge Challenger"},{"1":"0","2":"2","3":"8","4":"304.0","5":"3.15","6":"3","7":"150","8":"15.2","9":"17.30","10":"0","11":"3.435","_rn_":"AMC Javelin"},{"1":"0","2":"4","3":"8","4":"350.0","5":"3.73","6":"3","7":"245","8":"13.3","9":"15.41","10":"0","11":"3.840","_rn_":"Camaro Z28"},{"1":"0","2":"2","3":"8","4":"400.0","5":"3.08","6":"3","7":"175","8":"19.2","9":"17.05","10":"0","11":"3.845","_rn_":"Pontiac Firebird"},{"1":"1","2":"1","3":"4","4":"79.0","5":"4.08","6":"4","7":"66","8":"27.3","9":"18.90","10":"1","11":"1.935","_rn_":"Fiat X1-9"},{"1":"1","2":"2","3":"4","4":"120.3","5":"4.43","6":"5","7":"91","8":"26.0","9":"16.70","10":"0","11":"2.140","_rn_":"Porsche 914-2"},{"1":"1","2":"2","3":"4","4":"95.1","5":"3.77","6":"5","7":"113","8":"30.4","9":"16.90","10":"1","11":"1.513","_rn_":"Lotus Europa"},{"1":"1","2":"4","3":"8","4":"351.0","5":"4.22","6":"5","7":"264","8":"15.8","9":"14.50","10":"0","11":"3.170","_rn_":"Ford Pantera L"},{"1":"1","2":"6","3":"6","4":"145.0","5":"3.62","6":"5","7":"175","8":"19.7","9":"15.50","10":"0","11":"2.770","_rn_":"Ferrari Dino"},{"1":"1","2":"8","3":"8","4":"301.0","5":"3.54","6":"5","7":"335","8":"15.0","9":"14.60","10":"0","11":"3.570","_rn_":"Maserati Bora"},{"1":"1","2":"2","3":"4","4":"121.0","5":"4.11","6":"4","7":"109","8":"21.4","9":"18.60","10":"1","11":"2.780","_rn_":"Volvo 142E"}],"options":{"columns":{"min":{},"max":[10],"total":[11]},"rows":{"min":[10],"max":[10],"total":[32]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>one final test to verify output</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKGFscGhhTXRjYXJzKVxuXG5gYGAifQ== -->
+<pre class="r"><code>str(alphaMtcars)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJ2RhdGEuZnJhbWUnOlx0MzIgb2JzLiBvZiAgMTEgdmFyaWFibGVzOlxuICQgYW0gIDogbnVtICAxIDEgMSAwIDAgMCAwIDAgMCAwIC4uLlxuICQgY2FyYjogbnVtICA0IDQgMSAxIDIgMSA0IDIgMiA0IC4uLlxuICQgY3lsIDogbnVtICA2IDYgNCA2IDggNiA4IDQgNCA2IC4uLlxuICQgZGlzcDogbnVtICAxNjAgMTYwIDEwOCAyNTggMzYwIC4uLlxuICQgZHJhdDogbnVtICAzLjkgMy45IDMuODUgMy4wOCAzLjE1IDIuNzYgMy4yMSAzLjY5IDMuOTIgMy45MiAuLi5cbiAkIGdlYXI6IG51bSAgNCA0IDQgMyAzIDMgMyA0IDQgNCAuLi5cbiAkIGhwICA6IG51bSAgMTEwIDExMCA5MyAxMTAgMTc1IDEwNSAyNDUgNjIgOTUgMTIzIC4uLlxuICQgbXBnIDogbnVtICAyMSAyMSAyMi44IDIxLjQgMTguNyAxOC4xIDE0LjMgMjQuNCAyMi44IDE5LjIgLi4uXG4gJCBxc2VjOiBudW0gIDE2LjUgMTcgMTguNiAxOS40IDE3IC4uLlxuICQgdnMgIDogbnVtICAwIDAgMSAxIDAgMSAwIDEgMSAxIC4uLlxuICQgd3QgIDogbnVtICAyLjYyIDIuODggMi4zMiAzLjIxIDMuNDQgLi4uXG4ifQ== -->
+<pre><code>&#39;data.frame&#39;:   32 obs. of  11 variables:
+ $ am  : num  1 1 1 0 0 0 0 0 0 0 ...
+ $ carb: num  4 4 1 1 2 1 4 2 2 4 ...
+ $ cyl : num  6 6 4 6 8 6 8 4 4 6 ...
+ $ disp: num  160 160 108 258 360 ...
+ $ drat: num  3.9 3.9 3.85 3.08 3.15 2.76 3.21 3.69 3.92 3.92 ...
+ $ gear: num  4 4 4 3 3 3 3 4 4 4 ...
+ $ hp  : num  110 110 93 110 175 105 245 62 95 123 ...
+ $ mpg : num  21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...
+ $ qsec: num  16.5 17 18.6 19.4 17 ...
+ $ vs  : num  0 0 1 1 0 1 0 1 1 1 ...
+ $ wt  : num  2.62 2.88 2.32 3.21 3.44 ...</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<div id="defensive-coding" class="section level2">
+<h2>Defensive Coding</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29sTmFtZVNvcnQoVGl0YW5pYylcblxuYGBgIn0= -->
+<pre class="r"><code>colNameSort(Titanic)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIE5BIE5BXG4ifQ== -->
+<pre><code>[1] NA NA</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29sTmFtZVNvcnQgPC0gZnVuY3Rpb24oaW5wdXRERikge1xuICBcbiAgaWYgKGlzLmRhdGEuZnJhbWUoaW5wdXRERikge1xuXG5gYGAifQ== -->
+<pre class="r"><code>colNameSort &lt;- function(inputDF) {
+  
+  if (is.data.frame(inputDF) {
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3I6IHVuZXhwZWN0ZWQgJ3snIGluOlxuXCIgIFxuICBpZiAoaXMuZGF0YS5mcmFtZShpbnB1dERGKSB7XCJcbiJ9 -->
+<pre><code>Error: unexpected &#39;{&#39; in:
+&quot;  
+  if (is.data.frame(inputDF) {&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Run the function on the Titanic dataset</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29sTmFtZVNvcnQoVGl0YW5pYylcblxuYGBgIn0= -->
+<pre class="r"><code>colNameSort(Titanic)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZyBpbiBjb2xOYW1lU29ydChUaXRhbmljKSA6IEV4cGVjdGluZyBhIGRhdGEgZnJhbWUgYXMgaW5wdXQuIFxuIn0= -->
+<pre><code>Warning in colNameSort(Titanic) : Expecting a data frame as input. </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+</div>
+
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiRGF0YSBTY2llbmNlIGZvciBCdXNpbmVzcyBXaXRoIFIgLSBDSDA0IgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgpjcmVhdGUgYSBmdW5jdGlvbiB0byBzb3J0IGEgZGYncyBjb2x1bW5zCgpgYGB7cn0KIy0tLSBhbHBoYWJldGljYWxseSBieSBjb2x1bW4gbmFtZQoKY29sTmFtZVNvcnQgPC0gZnVuY3Rpb24oaW5wdXRERikgewogIAp9CmBgYAoKVGVzdCB0aGUgZnVuY3Rpb24gLSB5b3UgbXVzdCBydW4gaXQgb25jZSB0byBtYWtlIFJTdHVkaW8gYXdhcmUgb2YgdGhlIGZ1bmN0aW9uCgpIaWdobGlnaHQgYWxsIGxpbmVzIGluY2x1ZGluZyB0aGUgY3VybHkgYnJhY2tldHMsIHRoZSBydW4gYWxsIHNlbGVjdGVkIGxpbmVzCgpgYGB7cn0KY29sTmFtZVNvcnQobXRjYXJzKQpgYGAKCkZpbmlzaCBjcmVhdGluZyB0aGUgZnVuY3Rpb24KCmBgYHtyfQojLS0tIGFscGhhYmV0aWNhbGx5IGJ5IGNvbHVtbiBuYW1lCgpjb2xOYW1lU29ydCA8LSBmdW5jdGlvbihpbnB1dERGKSB7CiAgCiAgbmFtZUxpc3QgPC0gY29sbmFtZXMoaW5wdXRERikgIyBXaGF0IGFyZSB0aGUgbmFtZXM/CiAgY2F0KG5hbWVMaXN0KQogIAp9CmBgYAoKVGVzdCB0aGUgZnVuY3Rpb24gYWdhaW4KCmBgYHtyfQpjb2xOYW1lU29ydChtdGNhcnMpCmBgYAoKYWRkIHRoZSBzb3J0KCkgZnVuY3Rpb24gdG8gb3V0IG5ldyBmdW5jdGlvbgoKYGBge3J9CmNvbE5hbWVTb3J0IDwtIGZ1bmN0aW9uKGlucHV0REYpIHsKICAKICBuYW1lTGlzdCA8LSBjb2xuYW1lcyhpbnB1dERGKSAjIFdoYXQgYXJlIHRoZSBuYW1lcz8KICBuYW1lTGlzdCA8LSBzb3J0KG5hbWVMaXN0KQogIGNhdChuYW1lTGlzdCkKICAKfQpgYGAKClRlc3QgdGhlIGZ1bmN0aW9uIGFnYWluCgpgYGB7cn0KY29sTmFtZVNvcnQobXRjYXJzKQpgYGAKCmFkZCB0byBmdW5jdGlvbiBhbmQgdGVzdApvdXRwdXQgaW4gdGhlIGZvciBvZiBhIGRhdGEgZnJhbWUKCmBgYHtyfQpjb2xOYW1lU29ydCA8LSBmdW5jdGlvbihpbnB1dERGKSB7CiAgCiAgbmFtZUxpc3QgPC0gY29sbmFtZXMoaW5wdXRERikgIyBXaGF0IGFyZSB0aGUgbmFtZXM/CiAgbmFtZUxpc3QgPC0gc29ydChuYW1lTGlzdCkKICBvdXRwdXRERiA8LSBpbnB1dERGW25hbWVMaXN0XQogIGNhdChjb2xuYW1lcyhvdXRwdXRERikpCiAgCn0KCmNvbE5hbWVTb3J0KG10Y2FycykKYGBgCgoKCmBgYHtyfQpjb2xOYW1lU29ydCA8LSBmdW5jdGlvbihpbnB1dERGKSB7CiAgCiAgbmFtZUxpc3QgPC0gY29sbmFtZXMoaW5wdXRERikgIyBXaGF0IGFyZSB0aGUgbmFtZXM/CiAgbmFtZUxpc3QgPC0gc29ydChuYW1lTGlzdCkKICBvdXRwdXRERiA8LSBpbnB1dERGW25hbWVMaXN0XQogIHJldHVybihvdXRwdXRERikKICAKfQoKY29sTmFtZVNvcnQobXRjYXJzKQpgYGAKCm9uZSBmaW5hbCB0ZXN0IHRvIHZlcmlmeSBvdXRwdXQKCmBgYHtyfQphbHBoYU10Y2FycyA8LSBjb2xOYW1lU29ydChtdGNhcnMpCgpzdHIoYWxwaGFNdGNhcnMpCmBgYAojIyBEZWZlbnNpdmUgQ29kaW5nCgpgYGB7cn0KY29sTmFtZVNvcnQoVGl0YW5pYykKYGBgCmBgYHtyfQojLS0tIENyZWF0ZSBhIGZ1bmN0aW9uIHRvIHNvcnQgYSBkYXRhIGZyYW1lJ3MgY29sdW1ucwoKIy0tLSBhbHBoYWJldGljYWxseSBieSBjb2x1bW4gbmFtZQoKY29sTmFtZVNvcnQgPC0gZnVuY3Rpb24oaW5wdXRERikgewogIAogIGlmIChpcy5kYXRhLmZyYW1lKGlucHV0REYpKSB7CiAgICBuYW1lTGlzdCA8LSBjb2xuYW1lcyhpbnB1dERGKSAjIFdoYXQgYXJlIHRoZSBuYW1lcz8KICAgIG5hbWVMaXN0IDwtIHNvcnQobmFtZUxpc3QpCiAgICBvdXRwdXRERiA8LSBpbnB1dERGW25hbWVMaXN0XQogICAgcmV0dXJuKG91dHB1dERGKQogICB9IGVsc2UgewogICAgd2FybmluZygiRXhwZWN0aW5nIGEgZGF0YSBmcmFtZSBhcyBpbnB1dC4gXG4iKQogICB9CiAgCn0KCmBgYAoKUnVuIHRoZSBmdW5jdGlvbiBvbiB0aGUgVGl0YW5pYyBkYXRhc2V0CgpgYGB7cn0KY29sTmFtZVNvcnQoVGl0YW5pYykKYGBgCgoKCg==</div>
 
 
 

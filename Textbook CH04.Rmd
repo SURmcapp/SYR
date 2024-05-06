@@ -4,15 +4,128 @@ output: html_notebook
 ---
 
 create a function to sort a df's columns
-create
 
 ```{r}
+#--- alphabetically by column name
+
+colNameSort <- function(inputDF) {
+  
+}
+```
+
+Test the function - you must run it once to make RStudio aware of the function
+
+Highlight all lines including the curly brackets, the run all selected lines
+
+```{r}
+colNameSort(mtcars)
+```
+
+Finish creating the function
+
+```{r}
+#--- alphabetically by column name
+
+colNameSort <- function(inputDF) {
+  
+  nameList <- colnames(inputDF) # What are the names?
+  cat(nameList)
+  
+}
+```
+
+Test the function again
+
+```{r}
+colNameSort(mtcars)
+```
+
+add the sort() function to out new function
+
+```{r}
+colNameSort <- function(inputDF) {
+  
+  nameList <- colnames(inputDF) # What are the names?
+  nameList <- sort(nameList)
+  cat(nameList)
+  
+}
+```
+
+Test the function again
+
+```{r}
+colNameSort(mtcars)
+```
+
+add to function and test
+output in the for of a data frame
+
+```{r}
+colNameSort <- function(inputDF) {
+  
+  nameList <- colnames(inputDF) # What are the names?
+  nameList <- sort(nameList)
+  outputDF <- inputDF[nameList]
+  cat(colnames(outputDF))
+  
+}
+
+colNameSort(mtcars)
+```
+
+
+
+```{r}
+colNameSort <- function(inputDF) {
+  
+  nameList <- colnames(inputDF) # What are the names?
+  nameList <- sort(nameList)
+  outputDF <- inputDF[nameList]
+  return(outputDF)
+  
+}
+
+colNameSort(mtcars)
+```
+
+one final test to verify output
+
+```{r}
+alphaMtcars <- colNameSort(mtcars)
+
+str(alphaMtcars)
+```
+## Defensive Coding
+
+```{r}
+colNameSort(Titanic)
+```
+```{r}
+#--- Create a function to sort a data frame's columns
+
+#--- alphabetically by column name
+
+colNameSort <- function(inputDF) {
+  
+  if (is.data.frame(inputDF)) {
+    nameList <- colnames(inputDF) # What are the names?
+    nameList <- sort(nameList)
+    outputDF <- inputDF[nameList]
+    return(outputDF)
+   } else {
+    warning("Expecting a data frame as input. \n")
+   }
+  
+}
 
 ```
 
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+Run the function on the Titanic dataset
 
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+```{r}
+colNameSort(Titanic)
+```
 
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
 
