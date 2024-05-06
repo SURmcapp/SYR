@@ -1,9 +1,10 @@
 ---
 title: "Data Science for Business With R - CH01"
 output:
-  pdf_document: default
+  word_document: default
   html_document:
     df_print: paged
+  pdf_document: default
 ---
 
 ### Creating and using vectors
@@ -99,7 +100,7 @@ myFamilyAges[ myFamilyAges > 6 &  myFamilyAges < 20 ]
 ### CASE STUDY: Calculating NPS (Net Promoter Score)
 
 - case key points
-    - Define a vector that represents likelihood to recommend
+    - Define a vector that represents likelihood to recommend (LTR)
     - Calculate the number of promoters and detractors
     - Calculate the net promoter score (NPS)
 

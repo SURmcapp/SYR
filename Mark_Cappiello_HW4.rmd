@@ -1,8 +1,13 @@
+---
+output:
+  word_document: default
+  html_document: default
+---
 # Introduction to Data Science HW 4
 ##### Copyright Jeffrey Stanton, Jeffrey Saltz, and Jasmina Tacheva
 
 ```{r}
-# Enter your name here: Mark Cappielllo
+# Enter your name here: Mark Cappiello
 ```
 
 ### Attribution statement: (choose only one and delete the rest)

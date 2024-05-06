@@ -1,7 +1,8 @@
 ---
 output:
-  html_document: default
+  word_document: default
   pdf_document: default
+  html_document: default
 ---
 # Intro to Dat Science - HW 2
 ##### Copyright  Jeffrey Stanton, Jeffrey Saltz, and Jasmina Tacheva
@@ -99,17 +100,14 @@ G.	What are the latitude and longitude of the quake reported by the largest numb
 
 
 ```{r}
-
-
-
-
-
+myQuakes[which.max(myQuakes$stations), c('stations','lat', 'long')]
 ```
 
 H.	What are the latitude and longitude of the quake reported by the smallest number of stations?  
 
 
 ```{r}
+myQuakes[which.min(myQuakes$stations), c('stations','lat', 'long')]
 
 ```
 
@@ -120,12 +118,17 @@ I.	 Test if **maxQuake** is greater than 7 (output “yes” or “no”) <br>
 
 
 ```{r}
+maxQuake <- max(myQuakes$mag)
+maxQuake
 if  (100 < 150) "100 is less than 150" else "100 is greater than 150"
+if (maxQuake > 7) "maxQuake is greater than 7" else "maxQuake is less than 7"
 ```
 
 J.	 Following the same logic, test if **minQuake** is less than 3 (output “yes” or “no”):
 
 
 ```{r}
-
+minQuake <- min(myQuakes$mag)
+minQuake
+if (maxQuake < 3) "minQuake is less than 3" else "minQuake is greater than 3"
 ```

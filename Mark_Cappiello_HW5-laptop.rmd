@@ -1,3 +1,8 @@
+---
+output:
+  word_document: default
+  html_document: default
+---
 # Intro to Data Science - HW 5
 ##### Copyright Jeffrey Stanton, Jeffrey Saltz, and Jasmina Tacheva
 
@@ -10,8 +15,9 @@
 
 
 ```{r}
-# 1. I did this homework by myself, with help from the book and the professor.
+# 
 # 2. I did this homework with help from the book and the professor and these Internet sources:
+# I also recently bought a book called "Learning R" written by Richard Cotton published by O'Reilly Media Inc. 2013
 
 ```
 
@@ -79,7 +85,7 @@ D.	Write a comment describing how that statement works.
 
 *
 ```{r}
-#--- Starting from the inside and working outward
+#--- Starting from the inner most grouping and working outward
 #--- (tbCan$new_sp_m04) finds all of the values in data frame tbCan and column new_sp_m04
 #---  it returns these values as a vector
 #--- Using the is.na() function on (tbCan$new_sp_m04) returns only TRUE or FALSE for these values. 
@@ -127,10 +133,13 @@ tbCan$new_sp_m04[is.na(tbCan$new_sp_m04)]
 
 #--- male children 0-14 years old
 tbCan$new_sp_m014[is.na(tbCan$new_sp_m014)]
+
 #--- female children 0-14 years old 
 tbCan$new_sp_f014[is.na(tbCan$new_sp_f014)]
+
 #--- male citizens 65 years of age and older
 tbCan$new_sp_m65[is.na(tbCan$new_sp_m65)]
+
 #--- female citizens 65 years of age and older
 tbCan$new_sp_f65[is.na(tbCan$new_sp_f65)]
 
@@ -145,10 +154,6 @@ H.	Create a histogram for **new_sp_m014**. Be sure to add a title and briefly de
 library(tidyverse)
 myPlot <- ggplot(tbCan)
 
-#histogram new_sp_m04
-#myPlot.new_sp_m04 <- myPlot + aes(x=new_sp_m04) + geom_histogram(bins = 12,fill = "yellow", col = "black")
-#myPlot.new_sp_m04
-
 #histogram new_sp_m014
 myPlot.new_sp_m014 <- myPlot + aes(x=new_sp_m014) + geom_histogram(bins = 12,fill = "cyan", col = "black")
 myPlot.new_sp_m014
@@ -161,15 +166,21 @@ Which parameter do you need to adjust to make the other histograms look right?
 
 ```{r}
 #histogram new_sp_f014
-myPlot.new_sp_f014 <- myPlot + aes(x=new_sp_f014) + geom_histogram(bins = 12,fill = "magenta", col = "black")
+myPlot.new_sp_f014 <- myPlot + aes(x=new_sp_f014) + 
+  geom_histogram(bins = 12,fill = "magenta", col = "black")
+
 myPlot.new_sp_f014
 
 #histogram new_sp_m65
-myPlot.new_sp_m65 <- myPlot + aes(x=new_sp_m65) + geom_histogram(bins = 12,fill = "green1", col = "black")
+myPlot.new_sp_m65 <- myPlot + aes(x=new_sp_m65) + 
+  geom_histogram(bins = 12,fill = "green1", col = "black")
+
 myPlot.new_sp_m65
 
 #histogram new_sp_f65
-myPlot.new_sp_f65 <- myPlot + aes(x=new_sp_f65) + geom_histogram(bins = 12,fill = "purple1", col = "black")
+myPlot.new_sp_f65 <- myPlot + aes(x=new_sp_f65) + 
+  geom_histogram(bins = 12,fill = "purple1", col = "black")
+
 myPlot.new_sp_f65
 ```
 
@@ -181,7 +192,7 @@ J.	These data were collected in a period of several decades (1980-2013). You can
 ggplot(tbCan, aes(x = year, y = new_sp_m014)) +
   geom_line(color = 'blue') +
   geom_point(color = 'blue') +
-  labs(x = "Year", y = "Positive TB Tests", title = "Positive TB Tests Over Years")
+  labs(x = "Year", y = "Positive TB Tests", title = "Positive TB Tests new_sp_m014")
 ```
 ```
 
@@ -192,17 +203,17 @@ K.	Next, create similar graphs for each of the other three variables. Change the
 ggplot(tbCan, aes(x = year, y = new_sp_f014)) +
   geom_line(color = 'red') +
   geom_point(color = 'red') +
-  labs(x = "Year", y = "Positive TB Tests", title = "Positive TB Tests Over Years")
+  labs(x = "Year", y = "Positive TB Tests", title = "Positive TB Tests new_sp_f014")
   
 ggplot(tbCan, aes(x = year, y = new_sp_m65)) +
   geom_line(color = 'blueviolet') +
   geom_point(color = 'blueviolet') +
-  labs(x = "Year", y = "Positive TB Tests", title = "Positive TB Tests Over Years")
+  labs(x = "Year", y = "Positive TB Tests", title = "Positive TB Tests new_sp_m65")
   
 ggplot(tbCan, aes(x = year, y = new_sp_f65)) +
   geom_line(color = 'maroon') +
   geom_point(color = 'maroon') +
-  labs(x = "Year", y = "Positive TB Tests", title = "Positive TB Tests Over Years")
+  labs(x = "Year", y = "Positive TB Tests", title = "Positive TB Tests new_sp_f65")
   
 ```
 
@@ -212,20 +223,29 @@ L.	Using vector math, create a new variable by combining the numbers from **new_
 ```{r}
 tbCan$new_sp_combined014 <- c(tbCan$new_sp_m014 + tbCan$new_sp_f014)
 tbCan$new_sp_combined014
+
 tbCan$new_sp_combined65 <- c(tbCan$new_sp_m65 + tbCan$new_sp_f65)
 tbCan$new_sp_combined65
 ```
+
 
 M.	Finally, create a **scatter plot**, showing **new_sp_combined014** on the x axis, **new_sp_combined65** on the y axis, and having the **color and size** of the point represent **year**.
 
 
 ```{r}
+<<<<<<< HEAD
 ggplot(tbCan, aes(x = year, y = new_sp_f65)) +
   geom_line(color = 'maroon') +
   geom_point(color = 'maroon') +
   geom_text(aes(label = year), angle = 90, size = 3, hjust = 1.25)
   labs(x = "Year", y = "Positive TB Tests", title = "Positive TB Tests Over Years")
 
+=======
+ggplot(tbCan, aes(x = new_sp_combined014, y = new_sp_combined65, size = year, color = factor(year))) +
+  geom_point() +
+  scale_color_discrete(name = "Year") +
+  labs(x = "new_sp_combined014", y = "new_sp_combined65", title = "Scatter Plot of New Combined Variables") 
+>>>>>>> e3bbb652bb9e7d814ed57708e6b9be66920d3ad2
 
 ```
 
@@ -233,5 +253,9 @@ N.	Interpret this visualization – what insight does it provide?
 
 
 ```{r}
+#--- It seems that data is grouped by decade which is represented by dot size.  Individual years have been mapped to an individual color.
+#--- The largest dot size represents the 2000's decade.  These dots are closest to zero on both the x and y axis, or origin point of the chart.
+#--- Also colors of the dots from earlier years seem to be furthest from zero.
+#--- Al of this combined to me indicates that prevention of new TB caseshas gotten better over the years and the fewer cases are being reported in more recent times.
 
 ```
