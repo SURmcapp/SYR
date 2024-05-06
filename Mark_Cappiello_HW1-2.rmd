@@ -42,7 +42,7 @@ A.	Show the number of observations in the **population** vector with the length(
 
 ```{r}
 pop_length <- length(population)
-cat('Answer A. ',pop_length, 'observations')
+pop_length
 ```
 
 B.	Show the number of observations in the **colleges** vector with the length() function:
@@ -50,7 +50,7 @@ B.	Show the number of observations in the **colleges** vector with the length() 
 
 ```{r}
 col_length <- length(colleges)
-cat('Answer B. ',col_length,'observations')
+col_length
 ```
 
 C.	Calculate the average CNY population using the mean() function:
@@ -58,7 +58,7 @@ C.	Calculate the average CNY population using the mean() function:
 
 ```{r}
 pop_mean <- mean(population)
-cat('Answer C. ',pop_mean,'CNY population average')
+pop_mean
 ```
 
 D.	Calculate the average number of colleges in CNY using the mean() function:
@@ -66,7 +66,7 @@ D.	Calculate the average number of colleges in CNY using the mean() function:
 
 ```{r}
 col_mean <- mean(colleges)
-cat('Answer c. ',col_mean,'CNY avg number of colleges')
+col_mean
 ```
 
 E.	Calculate the total CNY population using the sum() function:
@@ -74,7 +74,7 @@ E.	Calculate the total CNY population using the sum() function:
 
 ```{r}
 pop_sum <- sum(population)
-cat('Answer E. ',pop_sum,'total CNY population')
+pop_sum
 ```
 
 F.	Calculate the total number of colleges in CNY using the sum() function:
@@ -82,21 +82,21 @@ F.	Calculate the total number of colleges in CNY using the sum() function:
 
 ```{r}
 col_sum <- sum(colleges)
-cat('Answer F. ',col_sum,'total number of CNY colleges')
+col_sum
 ```
 
 G.	Calculate the average CNY population again, this time using **the results from steps A & E**:
 
 
 ```{r}
-cat('Answer G. ',pop_sum/pop_length,'avg CNY population')
+pop_sum/pop_length
 ```
 
 H.	Calculate the average number of colleges in CNY again, this time using **the results from steps B & F**:
 
 
 ```{r}
-cat('Answer H. ',col_sum/col_length,'avg number of CNY colleges')
+col_sum/col_length
 ```
 
 # Part 2: Using the max/min and range functions in {r}
@@ -106,7 +106,7 @@ I.	How many colleges does the county with most colleges have? Hint: Use the max(
 
 ```{r}
 col_max <- max(colleges)
-cat('Answer I. ',col_max,'the max number of colleges in the county with the most colleges')
+col_max
 ```
 
 J.	What is the population of the least populous county in CNY? **Hint:** Use the min() function:
@@ -114,7 +114,7 @@ J.	What is the population of the least populous county in CNY? **Hint:** Use the
 
 ```{r}
 pop_min <- min(population)
-cat('Answer J. ',pop_min,'the population of the least populous county')
+pop_min
 ```
 
 K.	Display the populations of the least populous and most populous county in the dataset together. **Hint:** Use the range() function:
@@ -122,7 +122,7 @@ K.	Display the populations of the least populous and most populous county in the
 
 ```{r}
 pop_range <- range(population)
-cat('Answer K. ',pop_range,'are the populations of the least and most populous counties, respectively')
+pop_range
 ```
 
 # Part 3: Vector Math
@@ -132,7 +132,7 @@ L.	Create a new vector called **extraPop**, which is the current population of a
 
 ```{r}
 extraPop <- population+50
-cat('Answer L. new vector "extraPop" contains values',extraPop)
+extraPop
 ```
 
 M.	 Calculate the average of **extraPop**:
@@ -140,7 +140,7 @@ M.	 Calculate the average of **extraPop**:
 
 ```{r}
 xtra_mean <- mean(extraPop)
-cat('Answer M. ',xtra_mean,'is the average of "extraPop"')
+xtra_mean
 ```
 
 N.	In a variable called **bigCounties**, store all the population numbers from the original **population** vector which are **greater than 120** (using **subsetting** in R):
@@ -148,7 +148,7 @@ N.	In a variable called **bigCounties**, store all the population numbers from t
 
 ```{r}
 bigCounties <- population > 120
-cat('Answer N. vector "bigCounties" contains the population numbers from original vector "population" which are greater than 120:',population[bigCounties],'.')
+population[bigCounties]
 ```
 
 O.	Report the length of **bigCounties**:
@@ -156,5 +156,5 @@ O.	Report the length of **bigCounties**:
 
 ```{r}
 bC_length <- length(population[bigCounties])
-cat('Answer O. the length of vector "bigCounties" is',bC_length)
+bC_length
 ```

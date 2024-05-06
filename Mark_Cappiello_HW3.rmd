@@ -1,7 +1,8 @@
 ---
 output:
-  html_document: default
+  word_document: default
   pdf_document: default
+  html_document: default
 ---
 # Intro to Data Science - HW 3
 ##### Copyright Jeffrey Stanton, Jeffrey Saltz, and Jasmina Tacheva

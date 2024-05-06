@@ -444,23 +444,41 @@ library(dplyr)</code></pre>
 
 quakeSorted1 &lt;- myQuakes[order(myQuakes$mag), ]</code></pre>
 <ol start="7" style="list-style-type: upper-alpha">
-<li><p>What are the latitude and longitude of the quake reported by the
-largest number of stations?</p></li>
-<li><p>What are the latitude and longitude of the quake reported by the
-smallest number of stations?</p></li>
+<li>What are the latitude and longitude of the quake reported by the
+largest number of stations?</li>
 </ol>
+<pre class="r"><code>myQuakes[which.max(myQuakes$stations), c(&#39;stations&#39;,&#39;lat&#39;, &#39;long&#39;)]</code></pre>
+<pre><code>##     stations    lat   long
+## 870      132 -12.23 167.02</code></pre>
+<ol start="8" style="list-style-type: upper-alpha">
+<li>What are the latitude and longitude of the quake reported by the
+smallest number of stations?</li>
+</ol>
+<pre class="r"><code>myQuakes[which.min(myQuakes$stations), c(&#39;stations&#39;,&#39;lat&#39;, &#39;long&#39;)]</code></pre>
+<pre><code>##    stations lat   long
+## 14       10 -21 181.66</code></pre>
 <p><strong>Step 3:</strong> Using conditional if statements <br></p>
 <ol style="list-style-type: upper-roman">
 <li>Test if <strong>maxQuake</strong> is greater than 7 (output “yes” or
 “no”) <br> <strong>Hint:</strong> Try modifying the following code in
 R:</li>
 </ol>
+<pre class="r"><code>maxQuake &lt;- max(myQuakes$mag)
+maxQuake</code></pre>
+<pre><code>## [1] 6.4</code></pre>
 <pre class="r"><code>if  (100 &lt; 150) &quot;100 is less than 150&quot; else &quot;100 is greater than 150&quot;</code></pre>
 <pre><code>## [1] &quot;100 is less than 150&quot;</code></pre>
+<pre class="r"><code>if (maxQuake &gt; 7) &quot;maxQuake is greater than 7&quot; else &quot;maxQuake is less than 7&quot;</code></pre>
+<pre><code>## [1] &quot;maxQuake is less than 7&quot;</code></pre>
 <ol start="10" style="list-style-type: upper-alpha">
 <li>Following the same logic, test if <strong>minQuake</strong> is less
 than 3 (output “yes” or “no”):</li>
 </ol>
+<pre class="r"><code>minQuake &lt;- min(myQuakes$mag)
+minQuake</code></pre>
+<pre><code>## [1] 4</code></pre>
+<pre class="r"><code>if (maxQuake &lt; 3) &quot;minQuake is less than 3&quot; else &quot;minQuake is greater than 3&quot;</code></pre>
+<pre><code>## [1] &quot;minQuake is greater than 3&quot;</code></pre>
 </div>
 </div>
 

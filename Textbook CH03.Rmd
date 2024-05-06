@@ -1,6 +1,7 @@
 ---
 title: "Data Science for Business With R - CH03"
 output:
+  word_document: default
   html_document:
     df_print: paged
 ---
