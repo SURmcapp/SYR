@@ -1,0 +1,59 @@
+---
+title: "Data Science for Business With R - CH09"
+output: html_notebook
+---
+
+## MAP MASHUP
+
+Creating map visualizations with ggplot2
+
+get a map of the US with the following line of code
+
+```{r}
+library(ggplot2)
+us <- map_data("state")
+head(us)
+```
+Visualize the points with the following
+
+```{r}
+ggplot(us) + 
+  geom_point(aes(x=long,y=lat))
+```
+
+```{r}
+ggplot(us) + 
+  geom_point(aes(x=long,y=lat)) +
+  coord_map()
+```
+
+Zoom into NY
+
+```{r}
+NYData <- us %>% filter(region=="new york")
+
+ggplot(NYData) + geom_point(aes(x=long,y=lat)) + coord_map()
+```
+
+Can also filter by group number or group level data
+
+```{r}
+NYGroupLevelDta <- us %>% filter(group==35)
+
+ggplot(NYGroupLevelDta) + geom_point(aes(x=long,y=lat)) + coord_map()
+```
+Now generate the map using lines
+
+```{r}
+ggplot(us) + geom_polygon(color = "blue", fill = "green",aes(x=long,y=lat,group=group))
+```
+
+
+```{r}
+library(readr)
+urlToRead <- "http://www2.census.gov/programs-surveys/popest/tables/2010-2011/state/totals/nst-est2011-01.csv"
+
+testFrame <- read_csv(url(urlToRead))
+
+```
+

@@ -1,0 +1,153 @@
+# Intro to Data Science - HW 6
+##### Copyright Jeffrey Stanton, Jeffrey Saltz, and Jasmina Tacheva
+
+
+```{r}
+# Enter your name here: Mark Cappiello
+```
+
+
+### Attribution statement: (choose only one and delete the rest)
+
+
+```{r}
+# 2. I did this homework with help from the book and the professor and these Internet sources: I also recently bought a book called "Learning R" written by Richard Cotton published by O'Reilly Media Inc. 2013
+```
+
+Last assignment we explored **data visualization** in R using the **ggplot2** package. This homework continues to use ggplot, but this time, with maps.  In addition, we will merge datasets using the built-in **merge( )** function, which provides a similar capability to a **JOIN in SQL** (don't worry if you do not know SQL). Many analytical strategies require joining data from different sources based on a **“key”** – a field that two datasets have in common. 
+
+## Step 1: Load the population data
+
+A.	Read the following JSON file,  and store it in a variable called **pop**.
+
+Examine the resulting pop dataframe and add comments explaining what each column contains.
+
+
+
+```{r}
+#--- install.packages("jsonlite")
+library(jsonlite)
+pop <- jsonlite::fromJSON("https://intro-datascience.s3.us-east-2.amazonaws.com/cities.json")
+head(pop , 5)
+#--- columns seem self explanatory.  They include city name, growth from 2000 to 2013, latitude, longitude, population and state name.
+```
+
+B.	Calculate the **average population** in the dataframe. Why is using mean() directly not working? Find a way to correct the data type of this variable so you can calculate the average (and then calculate the average)
+
+Hint: use **str(pop)** or **glimpse(pop)** to help understand the dataframe
+
+
+```{r}
+library(dplyr)
+glimpse(pop)
+#--- the population field is mode character.  It needs to be converted to a numerice field.
+pop$population <- as.numeric(pop$population)
+mean(pop$population)
+```
+
+C.	What is the population of the smallest city in the dataframe? Which state is it in?
+
+
+```{r}
+min(pop$population)
+
+min_index <- which.min(pop$population)
+
+smallest_city <- pop$city[min_index]
+smallest_city
+```
+
+## Step 2: Merge the population data with the state name data
+
+D)	Read in the state name .csv file from the URL below into a dataframe named **abbr** (for "abbreviation") – make sure to use the read_csv() function from the tidyverse package: <br>
+https://intro-datascience.s3.us-east-2.amazonaws.com/statesInfo.csv
+
+
+
+```{r}
+
+abbr <- read.csv("https://intro-datascience.s3.us-east-2.amazonaws.com/statesInfo.csv")
+
+head(abbr,5)
+```
+
+E)	To successfully merge the dataframe **pop** with the **abbr** dataframe, we need to identify a **column they have in common** which will serve as the **“key”** to merge on. One column both dataframes have is the **state column**. The only problem is the slight column name discrepancy – in **pop**, the column is called **“state”** and in **abbr** – **“State.”** These names need to be reconciled for the merge() function to work. Find a way to rename **abbr’s “State”** to **match** the **state column in pop**.    
+
+
+```{r}
+head(abbr,2)
+head(pop,2)
+
+abbr <- abbr %>% 
+  rename(state = State)
+
+head(abbr,5)
+```
+
+F)	Merge the two dataframes (using the **‘state’ column** from both dataframes), storing the resulting dataframe in **dfNew**.
+
+
+```{r}
+newDf <- merge(pop,abbr, by = "state")
+newDf[,c(1,8)]
+```
+
+G)	Review the structure of **dfNew** and explain the columns (aka attributes) in that dataframe.
+
+
+```{r}
+#--- the new data from is similar to the original pop datafram except now it has the Abbreviation column added to the right side.
+```
+
+## Step 3: Visualize the data
+
+H)	Plot points (on top of a map of the US) for **each city**. Have the **color** represent the **population**.
+
+
+```{r}
+install.packages(mapproj)
+library(ggplot2)
+state_geomDF <- map_data("")
+
+map.simple <- ggplot(state_geomDF) +
+  geom_polygon(color="black",fill="white",aes(x = long, y = lat, group=group)) +
+  coord_map()
+  labs(title = "Cities Map")
+
+map.simple
+  
+```
+
+I)	Add a block comment that criticizes the resulting map. It’s not very good.
+
+
+```{r}
+
+```
+
+## Step 4: Group by State
+
+
+J)	Use group_by and summarise to make a dataframe of state-by-state population. Store the result in **dfSimple**.
+
+
+```{r}
+
+```
+
+K)	Name the most and least populous states in **dfSimple** and show the code you used to determine them.
+
+
+```{r}
+
+```
+
+## Step 5: Create a map of the U.S.,  with the color of the state representing the state population
+
+L) Make sure to expand the limits correctly and that you have used **coord_map** appropriately.
+
+
+
+```{r}
+
+```
