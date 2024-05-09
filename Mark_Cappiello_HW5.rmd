@@ -7,7 +7,7 @@ output:
 ##### Copyright Jeffrey Stanton, Jeffrey Saltz, and Jasmina Tacheva
 
 ```{r}
-# Enter your name here: Mark Cappiello
+# Enter your name here: Mark Cappielo
 ```
 
 
@@ -233,19 +233,10 @@ M.	Finally, create a **scatter plot**, showing **new_sp_combined014** on the x a
 
 
 ```{r}
-<<<<<<< HEAD
-ggplot(tbCan, aes(x = year, y = new_sp_f65)) +
-  geom_line(color = 'maroon') +
-  geom_point(color = 'maroon') +
-  geom_text(aes(label = year), angle = 90, size = 3, hjust = 1.25)
-  labs(x = "Year", y = "Positive TB Tests", title = "Positive TB Tests Over Years")
-
-=======
 ggplot(tbCan, aes(x = new_sp_combined014, y = new_sp_combined65, size = year, color = factor(year))) +
   geom_point() +
   scale_color_discrete(name = "Year") +
   labs(x = "new_sp_combined014", y = "new_sp_combined65", title = "Scatter Plot of New Combined Variables") 
->>>>>>> e3bbb652bb9e7d814ed57708e6b9be66920d3ad2
 
 ```
 
