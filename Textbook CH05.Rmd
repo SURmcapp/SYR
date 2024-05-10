@@ -1,0 +1,89 @@
+---
+title: "Data Science for Business With R - CH05"
+output: html_notebook
+---
+
+## BEER, FARMS, PEAS, AND THE USE OF STATISTICS
+
+```{r}
+myFamilyAges <- c(43,42,12,8,5)
+
+mean(myFamilyAges)
+
+var(myFamilyAges)
+
+sd(myFamilyAges)
+```
+Create the Numberize() function
+
+```{r}
+Numberize <- function(inputVector) {
+  
+  inputVector <- str_replace_all(inputVector,"[,]", "")
+  return(as.numeric(inputVector))
+}
+```
+
+
+
+
+reusing code from CH03 used to obtain a population dataset
+
+```{r}
+library(readr)
+library(stringr)
+
+#--- urlToRead <- "http://www2.census.gov/programs-surveys/popest/tables/2010-2011/state/totals/nst-est2011-01.csv"
+
+testFrameCsvFile <- "census-pop-est.csv"
+
+# new function to read census data and clean it up
+readCencus <- function(urlToRead) {
+  
+  # read from the web
+  #testFrame <- read_csv(url(urlToRead))
+  testFrame <- read.csv(testFrameCsvFile)
+  # we  will use pipes to make updates to the data frame  
+  testFrame <- testFrame %>%
+  
+  #keep only the first 5 columns
+  select(1:5) %>% 
+  
+  #convert columns to numbers and rename the columns
+  mutate(april10census=Numberize(testFrame$X2)) %>%
+  mutate(april10base=Numberize(test-Frame$X3)) %>%
+  mutate(july10pop=Numberize(test-Frame$X4)) %>%
+  mutate(july10pop=Numberize(test-Frame$X5)) %>%
+  
+  # remove old columns that have been updated
+  select (-X2, -X3, -X4, -X5) %>%
+  
+  # remove the first 8 rows ('header information')
+  slice(-1:-8) %>%
+  
+  # rename the first column to StateName
+  rename(StateName=1) %>%
+  
+  # remove the last rows (tail info to see)
+  slice(c(-52,  -54:n())) %>%
+  
+  # remove the dot from the state name
+  mutate(stateName = str_replace_all(StateName, "\\.", ""))
+
+  # remove the old row names, which are now confusing
+  rownames(testFrame) <- NULL
+  
+  return(testFrame)
+
+}
+
+head(testFrame, 5)
+     
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+

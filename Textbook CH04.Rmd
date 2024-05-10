@@ -121,11 +121,70 @@ colNameSort <- function(inputDF) {
 
 ```
 
+## Defensive coding
+
 Run the function on the Titanic dataset
 
 ```{r}
+#--- else {warning"Expecting...} was added for this step
+
 colNameSort(Titanic)
+
+
+```
+
+Rewriting the same function by using the dplyr / select() function
+
+```{r}
+library(dplyr)
+
+colNameSort <- function(inputDF) {
+  
+  inputDF %>% select(sort(names(.)))
+  
+}
+
+colNameSort(mtcars)
+```
+
+## CASE STUDY: CREATING AND USING A CALCULATE FUNCTION
+
+define a function that accepts a vector of likelihood-to-recommend values and returns the NPS value
+
+ltr - a vector of ltr values
+
+neutral - the range below is for detractors, and above is a promoter (default is 7 to 8)
+
+```{r}
+
+CalcNPS <- function(ltr, neutral=c(7,8)) {
+  
+promoters <- ltr[ltr > max(neutral)]
+
+numPromoters <- length(promoters)
+  
+detractorsTrueFalse <- ltr < min(neutral)
+
+numDetractors <- sum(detractorsTrueFalse)
+
+total <- length(ltr)
+
+nps <- (numPromoters/total - numDetractors/total)*100
+
+return(nps)
+                                
+}
+
+ltr <- c(9,8,3,9,7,8,9,6,7,8,9)
+
+CalcNPS(ltr)
+
 ```
 
 
+## could not find smallSurvey.csv
 
+need to do 
+
+
+## Chapter Challenges
