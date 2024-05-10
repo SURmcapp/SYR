@@ -1,3 +1,8 @@
+---
+output:
+  word_document: default
+  html_document: default
+---
 # Intro to Data Science - HW 6
 ##### Copyright Jeffrey Stanton, Jeffrey Saltz, and Jasmina Tacheva
 
@@ -88,8 +93,8 @@ F)	Merge the two dataframes (using the **‘state’ column** from both datafram
 
 
 ```{r}
-newDf <- merge(pop,abbr, by = "state")
-newDf[,c(1,8)]
+dfNew <- merge(pop,abbr, by = "state")
+head(dfNew[,c(1,8)], 5)
 ```
 
 G)	Review the structure of **dfNew** and explain the columns (aka attributes) in that dataframe.
@@ -105,24 +110,53 @@ H)	Plot points (on top of a map of the US) for **each city**. Have the **color**
 
 
 ```{r}
-install.packages(mapproj)
+#install.packages("mapproj")
 library(ggplot2)
-state_geomDF <- map_data("")
+state_geomDF <- map_data("state")
 
+#--- simple US map
 map.simple <- ggplot(state_geomDF) +
   geom_polygon(color="black",fill="white",aes(x = long, y = lat, group=group)) +
-  coord_map()
+  coord_map() +
   labs(title = "Cities Map")
 
 map.simple
-  
+
+#--- Remove Alaska and Hawaii from dfNew
+dfNew <- dfNew[dfNew$state != "Alaska", ]
+dfNew <- dfNew[dfNew$state != "Hawaii", ]
+
+#--- change state names to lower case to help merge data
+dfNew$state <- tolower(dfNew$state)
+
+#--- Merge two data frames
+dfNewWithCities <- merge(state_geomDF, dfNew, by.x="region", by.y="state")
+
+#--- verify that map is not broken using new merged data
+map.simple.merged <- ggplot(dfNewWithCities) +
+  geom_polygon(color="black",fill="white",aes(x = long, y = lat, group=group)) +
+  coord_map() +
+  labs(title = "Cities Map")
+
+map.simple.merged
+
+#--- map of city population data points
+map.simple.cities <- ggplot(dfNew) +
+  geom_point(color="blue",fill="purple",aes(x = longitude, y = latitude, group=state)) +
+  coord_map() +
+  labs(title = "Cities Map")
+
+#--- putting it all together
+map.simple.merged + geom_point(color="blue",fill="purple",aes(x = longitude, y = latitude, group=group, size = population)) 
+
+
 ```
 
 I)	Add a block comment that criticizes the resulting map. It’s not very good.
 
 
 ```{r}
-
+#--- the population points are lumped together which makes it difficult to see the relative population size of individual cities.
 ```
 
 ## Step 4: Group by State
@@ -132,13 +166,26 @@ J)	Use group_by and summarise to make a dataframe of state-by-state population. 
 
 
 ```{r}
-
+library(dplyr)
+dfSimple <- dfNewWithCities %>% group_by(region) %>% summarise(statePopulatios = sum(population))
+dfSimple
 ```
 
 K)	Name the most and least populous states in **dfSimple** and show the code you used to determine them.
 
 
 ```{r}
+#--- create the index using the which.max() function
+maxPopIndex <- which.max(dfSimple$statePopulatios)
+#--- use the index to select the value from the dfSimple$region vector
+maxStatePop <- dfSimple$region[maxPopIndex] 
+maxStatePop
+
+#--- create the index using the which.min() function
+minPopIndex <- which.min(dfSimple$statePopulatios)
+#--- use the index to select the value from the dfSimple$region vector
+minStatePop <- dfSimple$region[minPopIndex]
+minStatePop
 
 ```
 
@@ -149,5 +196,13 @@ L) Make sure to expand the limits correctly and that you have used **coord_map**
 
 
 ```{r}
+dfStatePops <- merge(state_geomDF, dfSimple, by.x="region", by.y="region")
 
+map.simple.pops <- ggplot(dfStatePops) +
+  geom_polygon(color = "darkblue",aes(x = long, y = lat, group=group, fill = statePopulatios)) +
+  scale_fill_gradient(low = "lightblue", high = "darkblue") + 
+  coord_map() +
+  labs(title = "Cities Map")
+
+map.simple.pops
 ```

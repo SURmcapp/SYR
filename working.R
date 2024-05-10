@@ -123,3 +123,16 @@ ggplot(myDF, aes(x = yrs, y = cases)) +
   geom_line() +
   geom_point() +
   labs(x = "Year", y = "Cases", title = "Cases Over Years")
+
+
+df <- data.frame(x = c(1, 2, 3, 4, 5),
+                 y = c(6, 7, 8, 9, 10))
+
+result <- df$x > 3
+result
+
+filtered_df <- df[result, ]
+filtered_df
+
+any_greater_than_3 <- any(df$x > 3)
+any_greater_than_3
