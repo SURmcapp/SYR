@@ -38,7 +38,7 @@ library(stringr)
 testFrameCsvFile <- "census-pop-est.csv"
 
 # new function to read census data and clean it up
-readCencus <- function(urlToRead) {
+readCencus <- function(testFrameCsvFile) {
   
   # read from the web
   #testFrame <- read_csv(url(urlToRead))
