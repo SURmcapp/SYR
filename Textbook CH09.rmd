@@ -43,6 +43,7 @@ NYGroupLevelDta <- us %>% filter(group==35)
 ggplot(NYGroupLevelDta) + geom_point(aes(x=long,y=lat)) + coord_map()
 ```
 Now generate the map using lines
+This is a basic map that we will add details to.
 
 ```{r}
 ggplot(us) + geom_polygon(color = "blue", fill = "green",aes(x=long,y=lat,group=group))
