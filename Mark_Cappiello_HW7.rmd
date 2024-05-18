@@ -1,18 +1,21 @@
+---
+output:
+  word_document: default
+  html_document: default
+---
 # Intro to Data Science HW 7
 ##### Copyright Jeffrey Stanton, Jeffrey Saltz, and Jasmina Tacheva
 
 
 ```{r}
-# Enter your name here: 
+# Enter your name here: Mark Cappiello
 ```
 
 ### Attribution statement: (choose only one and delete the rest)
 
 
 ```{r}
-# 1. I did this homework by myself, with help from the book and the professor.
-# 2. I did this homework with help from the book and the professor and these Internet sources:
-# 3. I did this homework with help from <Name of another student> but did not cut and paste any code.
+# 2. I did this homework with help from the book and the professor and these Internet sources: I also recently bought a book called "Learning R" written by Richard Cotton published by O'Reilly Media Inc. 2013
 ```
 
 The chapter on **linear models** (“Lining Up Our Models”) introduces **linear predictive modeling** using the tool known as **multiple regression**. The term “multiple regression” has an odd history, dating back to an early scientific observation of a phenomenon called **“regression to the mean.”** These days, multiple regression is just an interesting name for using **linear modeling** to assess the **connection between one or more predictor variables and an outcome variable**. 
@@ -24,13 +27,25 @@ A.	We will be using the **airquality** data set available in R. Copy it into a d
 
 
 ```{r}
-
+air <- airquality
+str(air)
+summary(air)
+#glimpse(air)
+head(air, 5)
 ```
 
 B.	In the analysis that follows, **Ozone** will be considered as the **outcome variable**, and **Solar.R**, **Wind**, and **Temp** as the **predictors**. Add a comment to briefly explain the outcome and predictor variables in the dataframe using **?airquality**.
 
 
 ```{r}
+#?airquality
+#--- outcome variable	Ozone	numeric	Ozone (ppb)
+#--- predictor	Solar.R	numeric	Solar R (lang)
+#--- predictor	Wind	numeric	Wind (mph)
+#--- predictor	Temp	numeric	Temperature (degrees F)
+#--- predictor	Month	numeric	Month (1--12)
+#--- predictor	Day	numeric	Day of month (1--31)
+
 
 ```
 
@@ -38,13 +53,23 @@ C.	Inspect the outcome and predictor variables – are there any missing values?
 
 
 ```{r}
-
+na_values <- is.na(air)
+head(na_values, 5)
 ```
 
 D.	Use the **na_interpolation()** function from the **imputeTS package** (remember this was used in a previous HW) to fill in the missing values in each of the 4 columns. Make sure there are no more missing values using the commands from Step C.
 
 
 ```{r}
+#install.packages("imputeTS")
+library(imputeTS)
+
+air_no_nas <- apply(air, 2, na_interpolation)
+air_no_nas <- as.data.frame(air_no_nas)
+head(air_no_nas, 5)
+
+na_values2 <- is.na(air_no_nas)
+head(na_values2, 5)
 
 ```
 
@@ -52,6 +77,34 @@ E.	Create **3 bivariate scatterplots (X-Y) plots** (using ggplot), for each of t
 
 
 ```{r}
+library(ggplot2)
+
+#--- Scatterplot for Solar.R vs Ozone
+ggplot(air_no_nas, aes(x = Solar.R, y = Ozone)) +
+  geom_point() + labs(title = "Solar Radiation vs Ozone", 
+       x = "Solar Radiation (Langleys)", y = "Ozone (ppb)") +
+  geom_smooth(method = "lm", se = FALSE) +
+  annotate("text", x = max(air_no_nas$Solar.R, na.rm = TRUE), 
+           y = max(air_no_nas$Ozone,na.rm = TRUE),
+           label = "No linear relationship", hjust = 1, vjust = 1)
+
+# Scatterplot for Wind vs Ozone
+ggplot(air_no_nas, aes(x = Wind, y = Ozone)) +
+  geom_point() + labs(title = "Wind Speed vs Ozone",
+       x = "Wind Speed (mph)", y = "Ozone (ppb)") +
+  geom_smooth(method = "lm", se = FALSE) +
+  annotate("text", x = min(air_no_nas$Wind, na.rm = TRUE), 
+           y = max(air_no_nas$Ozone, na.rm = TRUE),
+           label = "Possible negative linear relationship", hjust = 0, vjust = 1)
+
+# Scatterplot for Temp vs Ozone
+ggplot(air_no_nas, aes(x = Temp, y = Ozone)) +
+  geom_point() + labs(title = "Temperature vs Ozone",
+       x = "Temperature (Fahrenheit)", y = "Ozone (ppb)") +
+  geom_smooth(method = "lm", se = FALSE) +
+  annotate("text", x = max(air_no_nas$Temp, na.rm = TRUE), 
+           y = max(air_no_nas$Ozone, na.rm = TRUE),
+           label = "Possible positive linear relationship", hjust = 1, vjust = 1)
 
 ```
 
@@ -59,20 +112,49 @@ F.	Next, create a **simple regression model** predicting **Ozone based on Wind**
 
 
 ```{r}
+model <- lm(Ozone ~ Wind, data = air_no_nas)
+summary(model)
 
+# Comment reporting the coefficient of Wind and its interpretation
+# The coefficient of Wind is the slope of the regression line, which represents the change in Ozone for a one-unit increase in Wind.
+# If the coefficient is statistically significant (p-value < 0.05), we can interpret it as follows:
+# For example, if the coefficient of Wind is -2.34 and statistically significant, it means that for every one-unit increase in Wind speed, Ozone decreases by 2.34 parts per billion (ppb) on average.
+
+# Report the adjusted R-squared of the model and its interpretation
+# The adjusted R-squared is a measure of how well the independent variable(s) explain the variation in the dependent variable, adjusted for the number of predictors in the model.
+# It ranges from 0 to 1, with higher values indicating a better fit.
+# For example, an adjusted R-squared of 0.45 means that 45% of the variance in Ozone is explained by Wind in the model.
 ```
 
 G.	Create a **multiple regression model** predicting **Ozone** based on **Solar.R**, **Wind**, and **Temp**.<br> **Make sure to include all three predictors in one model – NOT three different models each with one predictor.**
 
 
 ```{r}
+multiple_model <- lm(Ozone ~ Solar.R + Wind + Temp, data = air_no_nas)
+summary(multiple_model)
 
 ```
 
-H.	Report the **adjusted R-Squared** in a comment – how does it compare to the adjusted R-squared from Step F? Is this better or worse? Which of the predictors are **statistically significant** in the model? In a comment, report the coefficient of each predictor that is statistically significant. Do not report the coefficients for predictors that are not significant.
+H.	Report the **adjusted R-Squared** in a comment – how does it compare to the adjusted R-squared from above? Is this better or worse? Which of the predictors are **statistically significant** in the model? In a comment, report the coefficient of each predictor that is statistically significant. Do not report the coefficients for predictors that are not significant.
 
 
 ```{r}
+# Print the adjusted R-squared of the multiple regression model
+# The adjusted R-squared measures the proportion of variance in the dependent variable that is explained by the independent variables in the model, adjusted for the number of predictors.
+# Compare it to the adjusted R-squared from the simple regression model.
+# If it's higher, it indicates that the multiple regression model explains more variance in Ozone than the simple regression model.
+# If it's lower, it indicates that the multiple regression model may not provide a better fit than the simple regression model.
+# Interpret the value accordingly.
+
+# Print the summary of the multiple regression model to identify statistically significant predictors
+summary(multiple_model)
+
+# Report the coefficients of statistically significant predictors in a comment
+# Statistically significant predictors have p-values less than the chosen significance level (e.g., 0.05).
+# Report the coefficients of significant predictors and their interpretation.
+# For example, if Solar.R has a p-value less than 0.05, you can report its coefficient and interpret it accordingly.
+# Ignore coefficients of predictors that are not statistically significant.
+
 
 ```
 
@@ -87,7 +169,8 @@ predDF <- data.frame(Solar.R=290, Wind=13, Temp=61)
 
 
 ```{r}
-
+predicted_Ozone <- predict(multiple_model, newdata = predDF)
+predicted_Ozone
 ```
 
 J.	Create an additional **multiple regression model**, with **Temp** as the **outcome variable**, and the other **3 variables** as the **predictors**. 
@@ -96,5 +179,11 @@ Review the quality of the model by commenting on its **adjusted R-Squared**.
 
 
 ```{r}
+temp_model <- lm(Temp ~ Solar.R + Wind + Ozone, data = air_no_nas)
+summary(temp_model)
 
+# Comment on the adjusted R-squared of the model
+# The adjusted R-squared measures the proportion of variance in the dependent variable (Temp) that is explained by the independent variables (Solar.R, Wind, and Ozone), adjusted for the number of predictors.
+# Interpret the value of adjusted R-squared to assess the quality of the model.
+# A higher adjusted R-squared indicates that the model explains more variance in Temp, while a lower adjusted R-squared suggests that the model may not provide a good fit to the data.
 ```
