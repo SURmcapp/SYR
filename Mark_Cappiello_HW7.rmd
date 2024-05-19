@@ -144,16 +144,16 @@ H.	Report the **adjusted R-Squared** in a comment – how does it compare to the
 # Compare it to the adjusted R-squared from the simple regression model.
 # If it's higher, it indicates that the multiple regression model explains more variance in Ozone than the simple regression model.
 # If it's lower, it indicates that the multiple regression model may not provide a better fit than the simple regression model.
-# Interpret the value accordingly.
 
-# Print the summary of the multiple regression model to identify statistically significant predictors
+# Print the summary of the multiple regression model to identify "statistically significant" predictors
 summary(multiple_model)
 
 # Report the coefficients of statistically significant predictors in a comment
 # Statistically significant predictors have p-values less than the chosen significance level (e.g., 0.05).
+
 # Report the coefficients of significant predictors and their interpretation.
 # For example, if Solar.R has a p-value less than 0.05, you can report its coefficient and interpret it accordingly.
-# Ignore coefficients of predictors that are not statistically significant.
+# Ignore coefficients of predictors that are not "statistically significant".
 
 
 ```
@@ -184,6 +184,7 @@ summary(temp_model)
 
 # Comment on the adjusted R-squared of the model
 # The adjusted R-squared measures the proportion of variance in the dependent variable (Temp) that is explained by the independent variables (Solar.R, Wind, and Ozone), adjusted for the number of predictors.
+
 # Interpret the value of adjusted R-squared to assess the quality of the model.
 # A higher adjusted R-squared indicates that the model explains more variance in Temp, while a lower adjusted R-squared suggests that the model may not provide a good fit to the data.
 ```
