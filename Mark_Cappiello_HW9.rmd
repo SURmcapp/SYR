@@ -1,0 +1,185 @@
+# Intro to Data Science - HW 9
+##### Copyright Jeffrey Stanton, Jeffrey Saltz, Christopher Dunham, and Jasmina Tacheva
+
+
+```{r}
+# Enter your name here: Mark Cappiello
+```
+
+### Attribution statement: (choose only one and delete the rest)
+
+
+```{r}
+# 2. I did this homework with help from the book and the professor and these Internet sources: I also recently bought a book called "Learning R" written by Richard Cotton published by O'Reilly Media Inc. 2013
+```
+
+**Text mining** plays an important role in many industries because of the prevalence of text in the interactions between customers and company representatives. Even when the customer interaction is by speech, rather than by chat or email, speech to text algorithms have gotten so good that transcriptions of these spoken word interactions are often available. To an increasing extent, a data scientist needs to be able to wield tools that turn a body of text into actionable insights. In this homework, we explore a real **City of Syracuse dataset** using the **quanteda** and **quanteda.textplots** packages. Make sure to install the **quanteda** and **quanteda.textplots** packages before following the steps below:<br>
+
+## Part 1: Load and visualize the data file  
+A.	Take a look at this article: https://samedelstein.medium.com/snowplow-naming-contest-data-2dcd38272caf and write a comment in your R script, briefly describing what it is about.<br>
+
+
+```{r}
+#--- The article is about a snowplow naming contest in the city of Syracuse.  Text mining was used to to help read through the entries.  They eliminated duplicate entries. Converted text from a .pdf file to 
+```
+
+B.	Read the data from the following URL into a dataframe called **df**:
+https://intro-datascience.s3.us-east-2.amazonaws.com/snowplownames.csv
+
+
+```{r}
+url <- "https://intro-datascience.s3.us-east-2.amazonaws.com/snowplownames.csv"
+df <- read_csv(url)
+```
+
+C.	Inspect the **df** dataframe – which column contains an explanation of the meaning of each submitted snowplow name? Transform that column into a **document-feature matrix**, using the **corpus()**, **tokens()**, **tokens_select(), and **dfm()** functions. Do not forget to **remove stop words**.
+
+Hint: Make sure you have libraried *quanteda*
+
+
+```{r}
+#--- df$meaning contains the explanation of the meaning of each submitted slowplow name 
+#install.packages("quanteda")
+library(quanteda)
+
+# Load the necessary library
+library(quanteda)
+
+# Step 1: Create a corpus object from the column df$meaning
+corpus_data <- corpus(df$meaning)
+
+# Step 2: Tokenize the text. Convert the text from df$meaning into individual tokens or words
+tokens_data <- tokens(corpus_data, remove_punct = TRUE)
+
+# Step 3: Remove stop words. Stop words are those words that are considered insignificant in natural language processing
+tokens_no_stopwords <- tokens_select(tokens_data, pattern = stopwords("en"), selection = "remove")
+
+# Step 4: Create the document-feature matrix
+dfm_data <- dfm(tokens_no_stopwords)
+
+# Print the document-feature matrix
+dfm_data
+
+```
+
+D.	Plot a **word cloud**, where a word is only represented if it appears **at least 2 times** . **Hint:** use **textplot_wordcloud()**:
+
+Hint: Make sure you have libraried (and installed if needed) *quanteda.textplots* 
+
+
+```{r}
+install.packages("quanteda.textplots")
+library(quanteda.textplots)
+
+#--- Creating a textplot of words that appear at least two times can be dome a couple of ways
+
+# First you can filter the Document-feature matrix to include only terms that appear at least 2 times.
+dfm_filtered <- dfm_trim(dfm_data, min_termfreq = 2)
+textplot_wordcloud(dfm_filtered, random_order = FALSE, rotation = 0.25, 
+                   color = RColorBrewer::brewer.pal(8, "Dark2"))
+
+# The second way you can do this is to set min_count = 2 in the textplot_wordcount() function
+textplot_wordcloud(dfm_data, min_count = 2, random_order = FALSE, rotation = 0.25, 
+                   color = RColorBrewer::brewer.pal(8, "Dark2"))
+
+#--- Use random_order = FALSE so the words will appear in decreasing order from the center outward
+#--- Use rotation = 0.25 to set the portion of words to appear with 90 degree rotation
+#--- There is an RColorBrewer package available to enhance the readability of the word cloud
+```
+
+E.	Next, **increase the minimum count to 10**. What happens to the word cloud? **Explain in a comment**. 
+
+
+```{r}
+#--- here is the wordcloud where a words are included only if they appear a minimum of 10 times  
+textplot_wordcloud(dfm_data, min_count = 10, random_order = FALSE, rotation = 0.25, 
+                   color = RColorBrewer::brewer.pal(8, "Dark2"))
+
+#--- Since there are fewer words included the wordcloud will be smaller in size.
+```
+
+F.	What are the top words in the word cloud? Explain in a brief comment.
+
+
+```{r}
+#--- Based on size and color, the top words in the word cloud are 1/2, snow, syracuse, name, plow.
+```
+
+## Part 2: Analyze the sentiment of the descriptions
+
+A.	Create a **named list of word counts by frequency**.<br>
+
+output the 10 most frequent words (their word count and the word). <br>
+
+**Hint**: use **textstat_frequency()** from the *quanteda.textstats* package.
+
+
+```{r}
+#install.packages("quanteda.textstats")
+library(quanteda.textstats)
+
+# Step 5: Calculate word frequencies
+word_frequencies <- textstat_frequency(dfm_data)
+
+# Step 6: Get the 10 most frequent words
+top_10_words <- head(word_frequencies, 10)
+
+# Step 7: Create a named list of word counts by frequency
+named_list <- setNames(top_10_words$frequency, top_10_words$feature)
+
+# Print the 10 most frequent words and their counts
+named_list
+```
+
+B.	Explain in a comment what you observed in the sorted list of word counts. 
+
+
+```{r}
+
+```
+
+## Part 3: Match the words with positive and negative words 
+
+A.	Read in the list of positive words, using the scan() function, and output the first 5 words in the list. Do the same for the  the negative words list: <br>
+<br>
+https://intro-datascience.s3.us-east-2.amazonaws.com/positive-words.txt
+<br>
+https://intro-datascience.s3.us-east-2.amazonaws.com/negative-words.txt <br>
+<br>
+
+There should be 2006 positive words and 4783 negative words, so you may need to clean up these lists a bit. 
+
+
+```{r}
+
+```
+
+B.	Use **dfm_match()** to match the words in the dfm with the words in posWords). Note that **dfm_match()** creates a new dfm.
+
+Then pass this new dfm to the **textstat_frequency()** function to see the positive words in our corpus, and how many times each word was mentioned.
+
+
+```{r}
+
+```
+
+C. Sum all the positive words
+
+
+```{r}
+
+```
+
+D. Do a similar analysis for the negative words - show the 10 most requent negative words and then sum the negative words in the document.
+
+
+```{r}
+
+```
+
+E.	Write a comment describing what you found after matching positive and negative words. Which group is more common in this dataset? Might some of the negative words not actually be used in a negative way?  What about the positive words?
+
+
+```{r}
+
+```
