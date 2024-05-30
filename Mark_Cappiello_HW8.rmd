@@ -112,7 +112,7 @@ Hint: explore finalModel in the model that would created in F.
 
 
 ```{r}
-
+svm_model
 ```
 
 ## Part 4: Predict Values in the Test Data and Create a Confusion Matrix
@@ -144,21 +144,23 @@ D.	What is the **accuracy** based on what you see in the confusion matrix.
 
 
 ```{r}
-
+#--- Accuracy : 0.7033  
 ```
 
 E.	Compare your calculations with the **confusionMatrix()** function from the **caret** package.
 
 
 ```{r}
-
+calculations <- table(svmPred, test_data$credit_risk)
+calculations
 ```
 
 F.	Explain, in a block comment:<br> 1) why it is valuable to have a “test” dataset that is separate from a “training” dataset, and <br>2) what potential ethical challenges this type of automated classification may pose. 
 
 
 ```{r}
-
+#--- it is valuable t have a test dataset for a few reasons.  First it will help in the selection of a model to use to analyze a data set. Second it will help remove any bias in your analysis because it will be viewed as new data to the model. 
+#--- Potential challanges might include data privacy and data security
 ```
 
 ## Part 5: Now build a tree model (with rpart)
@@ -169,6 +171,12 @@ Note: you might need to install the e1071 package
 
 
 ```{r}
+#install.packages("rpart.plot")
+library(rpart)
+library(rpart.plot)
+
+tree_model <- rpart(credit_risk ~ ., data = train_data, method = "class")
+tree_model
 
 ```
 
@@ -176,19 +184,20 @@ B. Visualize the results using  rpart.plot()
 
 
 ```{r}
-
+rpart.plot(tree_model)
 ```
 
 C. Use the **predict()** function to predict the testData, and then generate a confusion matrix to explore the results
 
 
 ```{r}
-
+tree_predict <- predict(tree_model, newdata = test_data, type = "class")
+tree_predict
 ```
 
 D. Review the attributes being used for this credit decision. Are there any that might not be appropriate, with respect to fairness? If so, which attribute, and how would you address this fairness situation. Answer in a comment block below
 
 
 ```{r}
-
+#--- there may be bias my using the applicant's age.  You could try rerunning the model without considering age and then comparing the results.
 ```
