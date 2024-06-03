@@ -29,7 +29,7 @@ https://intro-datascience.s3.us-east-2.amazonaws.com/snowplownames.csv
 
 ```{r}
 url <- "https://intro-datascience.s3.us-east-2.amazonaws.com/snowplownames.csv"
-df <- read_csv(url)
+df <- read.csv(url)
 ```
 
 C.	Inspect the **df** dataframe – which column contains an explanation of the meaning of each submitted snowplow name? Transform that column into a **document-feature matrix**, using the **corpus()**, **tokens()**, **tokens_select(), and **dfm()** functions. Do not forget to **remove stop words**.
@@ -68,7 +68,7 @@ Hint: Make sure you have libraried (and installed if needed) *quanteda.textplots
 
 
 ```{r}
-install.packages("quanteda.textplots")
+#--- install.packages("quanteda.textplots")
 library(quanteda.textplots)
 
 #--- Creating a textplot of words that appear at least two times can be dome a couple of ways
@@ -102,7 +102,7 @@ F.	What are the top words in the word cloud? Explain in a brief comment.
 
 
 ```{r}
-#--- Based on size and color, the top words in the word cloud are 1/2, snow, syracuse, name, plow.
+#--- Based on size and color, the top words in the word cloud are 1/2, I, snow, syracuse, name, plow.
 ```
 
 ## Part 2: Analyze the sentiment of the descriptions
@@ -118,16 +118,16 @@ output the 10 most frequent words (their word count and the word). <br>
 #install.packages("quanteda.textstats")
 library(quanteda.textstats)
 
-# Step 5: Calculate word frequencies
+#--- Calculate word frequencies
 word_frequencies <- textstat_frequency(dfm_data)
 
-# Step 6: Get the 10 most frequent words
+#--- Get the 10 most frequent words
 top_10_words <- head(word_frequencies, 10)
 
-# Step 7: Create a named list of word counts by frequency
+#--- Create a named list of word counts by frequency
 named_list <- setNames(top_10_words$frequency, top_10_words$feature)
 
-# Print the 10 most frequent words and their counts
+#--- Print the 10 most frequent words and their counts
 named_list
 ```
 
@@ -135,7 +135,8 @@ B.	Explain in a comment what you observed in the sorted list of word counts.
 
 
 ```{r}
-
+#--- The sorted list of word counts shows the most frequently occurring words in the corpus.
+#--- the most frequently used words are listed out for you and to me it is earier to see these words in a list rather than in a word cloud
 ```
 
 ## Part 3: Match the words with positive and negative words 
@@ -151,7 +152,17 @@ There should be 2006 positive words and 4783 negative words, so you may need to 
 
 
 ```{r}
+#--- URLs for the positive and negative words lists
+positive_words_url <- "https://intro-datascience.s3.us-east-2.amazonaws.com/positive-words.txt"
+negative_words_url <- "https://intro-datascience.s3.us-east-2.amazonaws.com/negative-words.txt"
 
+#--- Read in the list of positive words
+positive_words <- scan(positive_words_url, what = "character", comment.char = ";")
+length(positive_words)
+
+#--- Read in the list of negative words
+negative_words <- scan(negative_words_url, what = "character", comment.char = ";")
+length(negative_words)
 ```
 
 B.	Use **dfm_match()** to match the words in the dfm with the words in posWords). Note that **dfm_match()** creates a new dfm.
@@ -160,26 +171,45 @@ Then pass this new dfm to the **textstat_frequency()** function to see the posit
 
 
 ```{r}
+#--- Match the words in the DFM with the positive words list
+dfm_positive <- dfm_match(dfm_data, features = positive_words)
 
+#--- Calculate word frequencies of the matched positive words
+positive_word_frequencies <- textstat_frequency(dfm_positive)
+
+#--- Show the positive word frequencies
+positive_word_frequencies
 ```
 
 C. Sum all the positive words
 
 
 ```{r}
-
+sum_positive_words <- sum(positive_word_frequencies$frequency)
+sum_positive_words
 ```
 
 D. Do a similar analysis for the negative words - show the 10 most requent negative words and then sum the negative words in the document.
 
 
 ```{r}
+#--- Match the words in the DFM with the negative words list
+dfm_negative <- dfm_match(dfm_data, features = negative_words)
 
+#--- Calculate word frequencies of the matched negative words
+negative_word_frequencies <- textstat_frequency(dfm_negative)
+
+#--- Show the negative word frequencies
+negative_word_frequencies
+
+#--- Show the sum of all negative words
+sum_negative_words <- sum(negative_word_frequencies$frequency)
+sum_negative_words
 ```
 
 E.	Write a comment describing what you found after matching positive and negative words. Which group is more common in this dataset? Might some of the negative words not actually be used in a negative way?  What about the positive words?
 
 
 ```{r}
-
+#--- There are more than three times the number of positive words than negative words. Some negative words may not be used in a negative way, it depends on the context in which they are used.  The same holds true for positive words. 
 ```
